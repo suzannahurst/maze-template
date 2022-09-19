@@ -368,12 +368,12 @@ return iFrame
 
 :: landing 
 <<set $passage to "landing">><<set $nextpass to "codeword">>
-<<include "header">><<include "footer">>
+<<include "header">>
 <main>
   hello
 <<button "next">><<set $prevpass to $passage>><<goto "codeword">><</button>>
 </main>
-
+<<include "footer">>
 
 
 :: codeword
