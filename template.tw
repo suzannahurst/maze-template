@@ -205,15 +205,15 @@ header{
 
 main{
    padding: 2rem;
-   /* margin-block-end: 3rem */
+   margin-block-end: 4rem
 }
 
 footer{
    display:flex;
   justify-content: flex-start;
   align-items: center; 
-  /* position:fixed;
-  bottom: 0; */
+  position:fixed;
+  bottom: 0;
   padding: 2rem;
   width: 100%;
   background-color: #000
@@ -248,6 +248,10 @@ justify-content: space-around;
   text-align: center
 }
 
+textarea{
+  min-width: 60vw
+}
+
 /* MAP */
 	.map{
 width: 100%;
@@ -268,7 +272,6 @@ width: 100%;
 	border:0
 }
 }
-
 
 
 :: Story JavaScript [script]
@@ -349,24 +352,25 @@ const mount = document.getElementById("mapMount")
 console.log(iFrame)
 return iFrame
 // this.mapMount.appendChild(iFrame)
-} 
+}
 
-:: StoryInit
 
+:: StoryInit {"position":"100,100","size":"100,100"}
 <<cacheaudio "badjoke" "https://youhavefoundconey.net/CG/what/assets/audio/badjoke.mp3">>
 <<waitforaudio>>
 
 
-
-:: header
+:: header {"position":"100,225","size":"100,100"}
 <header>Adventure Functionality /
  Structure Template</header>
 
-:: footer 
+
+:: footer {"position":"100,350","size":"100,100"}
 <footer><nav><div class="nav-item"><<button REPLAY>><<goto $passage>><</button>> </div>
 <div class="nav-item"><<button "BACK">><<goto $prevpass>><</button>></div></nav></footer>
 
-:: landing 
+
+:: landing {"position":"475,150","size":"100,100"}
 <<set $passage to "landing">><<set $nextpass to "codeword">>
 <<include "header">>
 <main>
@@ -376,7 +380,7 @@ return iFrame
 <<include "footer">>
 
 
-:: codeword
+:: codeword {"position":"475,275","size":"100,100"}
 <<set $passage to "landing">><<set $nextpass to "playaudio">>
 <<include "header">>
 <main>
@@ -408,7 +412,8 @@ which is codeword:
   </main>
   <<include "footer">>
 
-:: playaudio
+
+:: playaudio {"position":"475,400","size":"100,100"}
 <<include "header">>
 <<set $passage to "playaudio">><<set $nextpass to "buttonchoice">>
 <<audio "badjoke" play>>
@@ -417,7 +422,8 @@ which is codeword:
 <<button "next">><<set $prevpass to $passage>><<goto "buttonchoice">><</button>></main>
 <<include "footer">>
 
-:: buttonchoice
+
+:: buttonchoice {"position":"475,525","size":"100,100"}
 <<set $passage to "buttonchoice">><<set $nextpass to "buttonchoice">>
 <<include "header">>
 <main>
@@ -429,7 +435,8 @@ which is codeword:
 </main>
 <<include "footer">>
 
-:: doorA
+
+:: doorA {"position":"625,525","size":"100,100"}
 <<include "header">>
 <main>
 Door A
@@ -437,15 +444,15 @@ Door A
 </main>
 
 
-
-:: doorB
+:: doorB {"position":"750,525","size":"100,100"}
 <<include "header">>
 <main>
 Door B
   <<timed 2s>><<goto "captions">><</timed>>
 </main>
 
-:: captions 
+
+:: captions {"position":"475,650","size":"100,100"}
 <<set $passage to "captions">><<set $nextpass to "goingbacktochoice">>
 <<include "header">>
 <main>
@@ -458,7 +465,8 @@ Door B
 </main>
 <<include "footer">>
 
-:: goingbacktochoice
+
+:: goingbacktochoice {"position":"475,825","size":"100,100"}
 <<set $passage to "goingbacktochoice">><<set $nextpass to "answeringlongquestion">><<include "header">>
 <main>
 Which door did you choose?
@@ -471,7 +479,7 @@ Which door did you choose?
 <<include "footer">>
 
 
-:: answeringlongquestion
+:: answeringlongquestion {"position":"475,950","size":"100,100"}
 <<set $passage to "answeringlongquestion">><<set $nextpass to "results">><<include "header">>
 <main>
 <<textarea "$answer"" Write your answer here">>
@@ -483,7 +491,7 @@ Which door did you choose?
 <<include "footer">>
 
 
-:: results
+:: results {"position":"475,1075","size":"100,100"}
 <<set $passage to "results">><<set $nextpass to "map">>
 <<include "header">>
 <main>
@@ -494,7 +502,8 @@ $answer
 </main>
 <<include "footer">>
 
-:: map
+
+:: map {"position":"475,1200","size":"100,100"}
 <<set $passage to "map">><<set $nextpass to "map">>
 <<include "header">><<set $myMap = setup.generateDirectionsMap(51.515145100985166,-0.08905860787295125,51.51341581900639, -0.0850674807043743)>>
 <main>$myMap
@@ -503,3 +512,5 @@ Wish list: get rid of the More options/directions box!
 <<button "I'm in the right place">><<set $prevpass to $passage>><<goto "map">><</button>>
 </main>
 <<include "footer">>
+
+
