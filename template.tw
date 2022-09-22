@@ -8,7 +8,7 @@ The Maze of Adventures Template
 	"format": "SugarCube",
 	"format-version": "2.36.1",
 	"start": "landing",
-	"zoom": 1
+	"zoom": 0.6
 }
 
 
@@ -370,17 +370,17 @@ return iFrame
 <div class="nav-item"><<button "BACK">><<goto $prevpass>><</button>></div></nav></footer>
 
 
-:: landing {"position":"475,150","size":"100,100"}
-<<set $passage to "landing">><<set $nextpass to "codeword">>
+:: landing {"position":"450,125","size":"100,100"}
+<<set $passage to "landing">><<set $nextpass to "randomfromlist">>
 <<include "header">>
 <main>
   hello
-<<button "next">><<set $prevpass to $passage>><<goto "codeword">><</button>>
+<<button "next">><<set $prevpass to $passage>><<goto "randomfromlist">><</button>>
 </main>
 <<include "footer">>
 
 
-:: codeword {"position":"475,275","size":"100,100"}
+:: codeword {"position":"450,825","size":"100,100"}
 <<set $passage to "landing">><<set $nextpass to "playaudio">>
 <<include "header">>
 <main>
@@ -413,7 +413,7 @@ which is codeword:
   <<include "footer">>
 
 
-:: playaudio {"position":"475,400","size":"100,100"}
+:: playaudio {"position":"450,975","size":"100,100"}
 <<include "header">>
 <<set $passage to "playaudio">><<set $nextpass to "buttonchoice">>
 <<audio "badjoke" play>>
@@ -423,7 +423,7 @@ which is codeword:
 <<include "footer">>
 
 
-:: buttonchoice {"position":"475,525","size":"100,100"}
+:: buttonchoice {"position":"450,1100","size":"100,100"}
 <<set $passage to "buttonchoice">><<set $nextpass to "buttonchoice">>
 <<include "header">>
 <main>
@@ -436,7 +436,7 @@ which is codeword:
 <<include "footer">>
 
 
-:: doorA {"position":"625,525","size":"100,100"}
+:: doorA {"position":"625,1125","size":"100,100"}
 <<include "header">>
 <main>
 Door A
@@ -444,7 +444,7 @@ Door A
 </main>
 
 
-:: doorB {"position":"750,525","size":"100,100"}
+:: doorB {"position":"750,1125","size":"100,100"}
 <<include "header">>
 <main>
 Door B
@@ -452,7 +452,7 @@ Door B
 </main>
 
 
-:: captions {"position":"475,650","size":"100,100"}
+:: captions {"position":"450,1250","size":"100,100"}
 <<set $passage to "captions">><<set $nextpass to "goingbacktochoice">>
 <<include "header">>
 <main>
@@ -466,7 +466,7 @@ Door B
 <<include "footer">>
 
 
-:: goingbacktochoice {"position":"475,825","size":"100,100"}
+:: goingbacktochoice {"position":"450,1375","size":"100,100"}
 <<set $passage to "goingbacktochoice">><<set $nextpass to "answeringlongquestion">><<include "header">>
 <main>
 Which door did you choose?
@@ -479,7 +479,7 @@ Which door did you choose?
 <<include "footer">>
 
 
-:: answeringlongquestion {"position":"475,950","size":"100,100"}
+:: answeringlongquestion {"position":"450,1525","size":"100,100"}
 <<set $passage to "answeringlongquestion">><<set $nextpass to "results">><<include "header">>
 <main>
 <<textarea "$answer"" Write your answer here">>
@@ -491,7 +491,7 @@ Which door did you choose?
 <<include "footer">>
 
 
-:: results {"position":"475,1075","size":"100,100"}
+:: results {"position":"450,1675","size":"100,100"}
 <<set $passage to "results">><<set $nextpass to "map">>
 <<include "header">>
 <main>
@@ -503,13 +503,117 @@ $answer
 <<include "footer">>
 
 
-:: map {"position":"475,1200","size":"100,100"}
+:: map {"position":"450,1800","size":"100,100"}
 <<set $passage to "map">><<set $nextpass to "map">>
 <<include "header">><<set $myMap = setup.generateDirectionsMap(51.515145100985166,-0.08905860787295125,51.51341581900639, -0.0850674807043743)>>
 <main>$myMap
 Wish list: get rid of the More options/directions box!
 
 <<button "I'm in the right place">><<set $prevpass to $passage>><<goto "map">><</button>>
+</main>
+<<include "footer">>
+
+
+:: addletters {"position":"450,700","size":"100,100"}
+<<set $passage to "addletters">><<set $nextpass to "wordminusletters">>
+<<include "header">>
+<main>
+ Enter 6-8 letters:
+ 
+<<textbox "$letters" "">>
+<div id="lettersresult"></div>
+<<button "Enter">>
+<div id="lettersresult"></div>
+/% LETTERS FEEDBACK %/
+<div id="resultbutton">
+</div>
+/% INPUT VALIDATION%/
+/% Uses regex to check input is 6-8 letters %/
+<<set $validationFunc to (input)=>{return  /^[a-z]{6,8}$/.test(input) }>>
+<<if $validationFunc($letters)>>
+<<replace "#lettersresult">>Letters accepted<</replace>>
+<<timed 1s>><<set $prevpass to $passage>><<goto "wordminusletters">><</timed>>
+<<else>><<replace "#lettersresult">>Must be 6-8 letters, please try again<</replace>>
+<</if>><</button>>
+</main>
+<<include "footer">>
+
+
+:: wordminusletters {"position":"575,700","size":"100,100"}
+<<set $passage to "wordminusletters">><<set $nextpass to "codeword">>
+<<include "header">>
+<main>
+Original letters: $letters
+<<set $lettersArray to $letters.split("")>>
+<<run $lettersArray.pluckMany(2)>>
+<<set $letters to $lettersArray.join("")>>
+Original letters minus 2 random letters: $letters
+</main>
+<<include "footer">>
+
+
+:: choices {"position":"450,425","size":"100,100"}
+<<set $passage to "landing">><<set $nextpass to "choices">>
+<<include "header">>
+<main>
+
+<<set $choicetally to 0>>
+
+<<button "Good choices">>
+<<set $choicetally to $choicetally + 1 >>
+<<replace "#choicetally">>$choicetally<</replace>>
+<</button>>
+
+<<button "Bad choices">><<set $choicetally to $choicetally - 1 >>
+<<replace "#choicetally">>$choicetally<</replace>>
+<</button>>
+
+<<button "Finish">>
+<<if $choicetally gt 0>>
+<<set $prevpass to $passage>><<goto "goodchoices">>
+<<else>>
+<<set $prevpass to $passage>><<goto "badchoices">>
+<</if>>
+<</button>>
+
+<div id="choicetally">0</div>
+
+</main>
+
+
+:: badchoices {"position":"450,550","size":"100,100"}
+<<set $passage to "badchoices">><<set $nextpass to "addletters">>
+<<include "header">>
+<main>
+ You made bad choices...
+<<button "next">><<set $prevpass to $passage>><<goto "addletters">><</button>>
+</main>
+<<include "footer">>
+
+
+:: goodchoices {"position":"575,550","size":"100,100"}
+<<set $passage to "goodchoices">><<set $nextpass to "addletters">>
+<<include "header">>
+<main>
+ You made good choices...
+<<button "next">><<set $prevpass to $passage>><<goto "addletters">><</button>>
+</main>
+<<include "footer">>
+
+
+:: randomfromlist {"position":"450,275","size":"100,100"}
+<<set $passage to "randomfromlist">><<set $nextpass to "choices">>
+<<include "header">>
+<main>
+<<set $list to ['Rock','Paper','Scissors']>>
+$list
+<<button "Pick random">>
+<<set $randomitem to $list.random()>>
+<<replace "#randomitem">>$randomitem<</replace>>
+<</button>>
+<div id = "randomitem"></div>
+
+<<button "next">><<set $prevpass to $passage>><<goto "addletters">><</button>>
 </main>
 <<include "footer">>
 
