@@ -252,6 +252,23 @@ textarea{
   min-width: 60vw
 }
 
+.wordcontainer{
+  display:flex;
+  flex-direction: row;
+}
+
+.letter-item > input[type=text]{
+    min-width: 2em;
+  	max-width: 2em;
+  	margin-inline-end:10px;
+}
+
+.letter-item > .correct-letter{
+  min-width: 2em;
+  	max-width: 2em;
+  	margin-inline-end:10px;
+}
+
 /* MAP */
 	.map{
 width: 100%;
@@ -371,16 +388,16 @@ return iFrame
 
 
 :: landing {"position":"450,125","size":"100,100"}
-<<set $passage to "landing">><<set $nextpass to "randomfromlist">>
+<<set $passage to "landing">><<set $nextpass to "wordle">>
 <<include "header">>
 <main>
   hello
-<<button "next">><<set $prevpass to $passage>><<goto "randomfromlist">><</button>>
+<<button "next">><<set $prevpass to $passage>><<goto "wordle">><</button>>
 </main>
 <<include "footer">>
 
 
-:: codeword {"position":"450,825","size":"100,100"}
+:: codeword {"position":"450,1025","size":"100,100"}
 <<set $passage to "landing">><<set $nextpass to "playaudio">>
 <<include "header">>
 <main>
@@ -413,7 +430,7 @@ which is codeword:
   <<include "footer">>
 
 
-:: playaudio {"position":"450,975","size":"100,100"}
+:: playaudio {"position":"450,1175","size":"100,100"}
 <<include "header">>
 <<set $passage to "playaudio">><<set $nextpass to "buttonchoice">>
 <<audio "badjoke" play>>
@@ -423,7 +440,7 @@ which is codeword:
 <<include "footer">>
 
 
-:: buttonchoice {"position":"450,1100","size":"100,100"}
+:: buttonchoice {"position":"450,1300","size":"100,100"}
 <<set $passage to "buttonchoice">><<set $nextpass to "buttonchoice">>
 <<include "header">>
 <main>
@@ -436,7 +453,7 @@ which is codeword:
 <<include "footer">>
 
 
-:: doorA {"position":"625,1125","size":"100,100"}
+:: doorA {"position":"625,1325","size":"100,100"}
 <<include "header">>
 <main>
 Door A
@@ -444,7 +461,7 @@ Door A
 </main>
 
 
-:: doorB {"position":"750,1125","size":"100,100"}
+:: doorB {"position":"750,1325","size":"100,100"}
 <<include "header">>
 <main>
 Door B
@@ -452,7 +469,7 @@ Door B
 </main>
 
 
-:: captions {"position":"450,1250","size":"100,100"}
+:: captions {"position":"450,1450","size":"100,100"}
 <<set $passage to "captions">><<set $nextpass to "goingbacktochoice">>
 <<include "header">>
 <main>
@@ -466,7 +483,7 @@ Door B
 <<include "footer">>
 
 
-:: goingbacktochoice {"position":"450,1375","size":"100,100"}
+:: goingbacktochoice {"position":"450,1575","size":"100,100"}
 <<set $passage to "goingbacktochoice">><<set $nextpass to "answeringlongquestion">><<include "header">>
 <main>
 Which door did you choose?
@@ -479,7 +496,7 @@ Which door did you choose?
 <<include "footer">>
 
 
-:: answeringlongquestion {"position":"450,1525","size":"100,100"}
+:: answeringlongquestion {"position":"450,1725","size":"100,100"}
 <<set $passage to "answeringlongquestion">><<set $nextpass to "results">><<include "header">>
 <main>
 <<textarea "$answer"" Write your answer here">>
@@ -491,7 +508,7 @@ Which door did you choose?
 <<include "footer">>
 
 
-:: results {"position":"450,1675","size":"100,100"}
+:: results {"position":"450,1875","size":"100,100"}
 <<set $passage to "results">><<set $nextpass to "map">>
 <<include "header">>
 <main>
@@ -503,7 +520,7 @@ $answer
 <<include "footer">>
 
 
-:: map {"position":"450,1800","size":"100,100"}
+:: map {"position":"450,2000","size":"100,100"}
 <<set $passage to "map">><<set $nextpass to "map">>
 <<include "header">><<set $myMap = setup.generateDirectionsMap(51.515145100985166,-0.08905860787295125,51.51341581900639, -0.0850674807043743)>>
 <main>$myMap
@@ -514,7 +531,7 @@ Wish list: get rid of the More options/directions box!
 <<include "footer">>
 
 
-:: addletters {"position":"450,700","size":"100,100"}
+:: addletters {"position":"450,900","size":"100,100"}
 <<set $passage to "addletters">><<set $nextpass to "wordminusletters">>
 <<include "header">>
 <main>
@@ -539,7 +556,7 @@ Wish list: get rid of the More options/directions box!
 <<include "footer">>
 
 
-:: wordminusletters {"position":"575,700","size":"100,100"}
+:: wordminusletters {"position":"575,900","size":"100,100"}
 <<set $passage to "wordminusletters">><<set $nextpass to "codeword">>
 <<include "header">>
 <main>
@@ -548,11 +565,12 @@ Original letters: $letters
 <<run $lettersArray.pluckMany(2)>>
 <<set $letters to $lettersArray.join("")>>
 Original letters minus 2 random letters: $letters
+<<button "next">><<set $prevpass to $passage>><<goto "codeword">><</button>>
 </main>
 <<include "footer">>
 
 
-:: choices {"position":"450,425","size":"100,100"}
+:: choices {"position":"450,625","size":"100,100"}
 <<set $passage to "landing">><<set $nextpass to "choices">>
 <<include "header">>
 <main>
@@ -581,7 +599,7 @@ Original letters minus 2 random letters: $letters
 </main>
 
 
-:: badchoices {"position":"450,550","size":"100,100"}
+:: badchoices {"position":"450,750","size":"100,100"}
 <<set $passage to "badchoices">><<set $nextpass to "addletters">>
 <<include "header">>
 <main>
@@ -591,7 +609,7 @@ Original letters minus 2 random letters: $letters
 <<include "footer">>
 
 
-:: goodchoices {"position":"575,550","size":"100,100"}
+:: goodchoices {"position":"575,750","size":"100,100"}
 <<set $passage to "goodchoices">><<set $nextpass to "addletters">>
 <<include "header">>
 <main>
@@ -601,7 +619,7 @@ Original letters minus 2 random letters: $letters
 <<include "footer">>
 
 
-:: randomfromlist {"position":"450,275","size":"100,100"}
+:: randomfromlist {"position":"450,475","size":"100,100"}
 <<set $passage to "randomfromlist">><<set $nextpass to "choices">>
 <<include "header">>
 <main>
@@ -614,6 +632,56 @@ $list
 <div id = "randomitem"></div>
 
 <<button "next">><<set $prevpass to $passage>><<goto "addletters">><</button>>
+</main>
+<<include "footer">>
+
+
+:: wordle {"position":"450,300","size":"100,100"}
+<<set $passage to "wordle">><<set $nextpass to "randomfromlist">>
+<<include "header">>
+<main>
+
+Make it so this word says "REDO"
+
+<div class="wordcontainer">
+  <div class = "letter-item r">
+      R
+  </div>
+  <div class = "letter-item e">
+      E
+  </div>
+  <div class = "letter-item d">
+    <<textbox "$d" "">>
+  </div>
+  <div class = "letter-item o">
+    <<textbox "$o" "">>
+  </div>
+</div>
+
+
+<div class = "nextplaceholder">
+	<<button "Submit">>
+
+  <<if $d.toUpperCase() is  "D">>
+      <<replace ".d">>
+        D
+      <</replace>>
+  <</if>>
+  <<if $o.toUpperCase() is  "O">>
+      <<replace ".o">>
+          O
+      <</replace>>
+  <</if>>
+    <<if $d.toUpperCase() is "D" and $o.toUpperCase() is "O">>
+    <<replace ".nextplaceholder">>
+   	 <<button "next">><<set $prevpass to $passage>><<goto "randomfromlist">>
+   	 <</button>>
+    <</replace>>
+  <</if>>
+<</button>>
+</div>
+
+
 </main>
 <<include "footer">>
 
