@@ -252,6 +252,23 @@ textarea{
   min-width: 60vw
 }
 
+.wordcontainer{
+  display:flex;
+  flex-direction: row;
+}
+
+.letter-item > input[type=text]{
+    min-width: 2em;
+  	max-width: 2em;
+  	margin-inline-end:10px;
+}
+
+.letter-item > .correct-letter{
+  min-width: 2em;
+  	max-width: 2em;
+  	margin-inline-end:10px;
+}
+
 /* MAP */
 	.map{
 width: 100%;
@@ -354,6 +371,17 @@ return iFrame
 // this.mapMount.appendChild(iFrame)
 }
 
+//Get random 5 letter word
+
+setup.generate5LetterCode = () => {
+const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+let word = ""
+for (let i =0 ; i < 5 ; i++){
+word += alphabet[Math.round((alphabet.length-1)*Math.random())];
+}
+  return word;
+}
+
 
 :: StoryInit {"position":"100,100","size":"100,100"}
 <<cacheaudio "badjoke" "https://youhavefoundconey.net/CG/what/assets/audio/badjoke.mp3">>
@@ -371,16 +399,16 @@ return iFrame
 
 
 :: landing {"position":"450,125","size":"100,100"}
-<<set $passage to "landing">><<set $nextpass to "randomfromlist">>
+<<set $passage to "landing">><<set $nextpass to "wordle">>
 <<include "header">>
 <main>
   hello
-<<button "next">><<set $prevpass to $passage>><<goto "randomfromlist">><</button>>
+<<button "next">><<set $prevpass to $passage>><<goto "generatecodes">><</button>>
 </main>
 <<include "footer">>
 
 
-:: codeword {"position":"450,825","size":"100,100"}
+:: codeword {"position":"450,1450","size":"100,100"}
 <<set $passage to "landing">><<set $nextpass to "playaudio">>
 <<include "header">>
 <main>
@@ -413,7 +441,7 @@ which is codeword:
   <<include "footer">>
 
 
-:: playaudio {"position":"450,975","size":"100,100"}
+:: playaudio {"position":"450,1600","size":"100,100"}
 <<include "header">>
 <<set $passage to "playaudio">><<set $nextpass to "buttonchoice">>
 <<audio "badjoke" play>>
@@ -423,7 +451,7 @@ which is codeword:
 <<include "footer">>
 
 
-:: buttonchoice {"position":"450,1100","size":"100,100"}
+:: buttonchoice {"position":"450,1725","size":"100,100"}
 <<set $passage to "buttonchoice">><<set $nextpass to "buttonchoice">>
 <<include "header">>
 <main>
@@ -436,7 +464,7 @@ which is codeword:
 <<include "footer">>
 
 
-:: doorA {"position":"625,1125","size":"100,100"}
+:: doorA {"position":"625,1750","size":"100,100"}
 <<include "header">>
 <main>
 Door A
@@ -444,7 +472,7 @@ Door A
 </main>
 
 
-:: doorB {"position":"750,1125","size":"100,100"}
+:: doorB {"position":"750,1750","size":"100,100"}
 <<include "header">>
 <main>
 Door B
@@ -452,7 +480,7 @@ Door B
 </main>
 
 
-:: captions {"position":"450,1250","size":"100,100"}
+:: captions {"position":"450,1875","size":"100,100"}
 <<set $passage to "captions">><<set $nextpass to "goingbacktochoice">>
 <<include "header">>
 <main>
@@ -466,7 +494,7 @@ Door B
 <<include "footer">>
 
 
-:: goingbacktochoice {"position":"450,1375","size":"100,100"}
+:: goingbacktochoice {"position":"450,2000","size":"100,100"}
 <<set $passage to "goingbacktochoice">><<set $nextpass to "answeringlongquestion">><<include "header">>
 <main>
 Which door did you choose?
@@ -479,7 +507,7 @@ Which door did you choose?
 <<include "footer">>
 
 
-:: answeringlongquestion {"position":"450,1525","size":"100,100"}
+:: answeringlongquestion {"position":"450,2150","size":"100,100"}
 <<set $passage to "answeringlongquestion">><<set $nextpass to "results">><<include "header">>
 <main>
 <<textarea "$answer"" Write your answer here">>
@@ -491,7 +519,7 @@ Which door did you choose?
 <<include "footer">>
 
 
-:: results {"position":"450,1675","size":"100,100"}
+:: results {"position":"450,2300","size":"100,100"}
 <<set $passage to "results">><<set $nextpass to "map">>
 <<include "header">>
 <main>
@@ -503,7 +531,7 @@ $answer
 <<include "footer">>
 
 
-:: map {"position":"450,1800","size":"100,100"}
+:: map {"position":"450,2425","size":"100,100"}
 <<set $passage to "map">><<set $nextpass to "map">>
 <<include "header">><<set $myMap = setup.generateDirectionsMap(51.515145100985166,-0.08905860787295125,51.51341581900639, -0.0850674807043743)>>
 <main>$myMap
@@ -514,7 +542,7 @@ Wish list: get rid of the More options/directions box!
 <<include "footer">>
 
 
-:: addletters {"position":"450,700","size":"100,100"}
+:: addletters {"position":"450,1325","size":"100,100"}
 <<set $passage to "addletters">><<set $nextpass to "wordminusletters">>
 <<include "header">>
 <main>
@@ -539,7 +567,7 @@ Wish list: get rid of the More options/directions box!
 <<include "footer">>
 
 
-:: wordminusletters {"position":"575,700","size":"100,100"}
+:: wordminusletters {"position":"575,1325","size":"100,100"}
 <<set $passage to "wordminusletters">><<set $nextpass to "codeword">>
 <<include "header">>
 <main>
@@ -548,11 +576,12 @@ Original letters: $letters
 <<run $lettersArray.pluckMany(2)>>
 <<set $letters to $lettersArray.join("")>>
 Original letters minus 2 random letters: $letters
+<<button "next">><<set $prevpass to $passage>><<goto "codeword">><</button>>
 </main>
 <<include "footer">>
 
 
-:: choices {"position":"450,425","size":"100,100"}
+:: choices {"position":"450,1050","size":"100,100"}
 <<set $passage to "landing">><<set $nextpass to "choices">>
 <<include "header">>
 <main>
@@ -581,7 +610,7 @@ Original letters minus 2 random letters: $letters
 </main>
 
 
-:: badchoices {"position":"450,550","size":"100,100"}
+:: badchoices {"position":"450,1175","size":"100,100"}
 <<set $passage to "badchoices">><<set $nextpass to "addletters">>
 <<include "header">>
 <main>
@@ -591,7 +620,7 @@ Original letters minus 2 random letters: $letters
 <<include "footer">>
 
 
-:: goodchoices {"position":"575,550","size":"100,100"}
+:: goodchoices {"position":"575,1175","size":"100,100"}
 <<set $passage to "goodchoices">><<set $nextpass to "addletters">>
 <<include "header">>
 <main>
@@ -601,7 +630,7 @@ Original letters minus 2 random letters: $letters
 <<include "footer">>
 
 
-:: randomfromlist {"position":"450,275","size":"100,100"}
+:: randomfromlist {"position":"450,900","size":"100,100"}
 <<set $passage to "randomfromlist">><<set $nextpass to "choices">>
 <<include "header">>
 <main>
@@ -614,6 +643,157 @@ $list
 <div id = "randomitem"></div>
 
 <<button "next">><<set $prevpass to $passage>><<goto "addletters">><</button>>
+</main>
+<<include "footer">>
+
+
+:: wordle {"position":"450,725","size":"100,100"}
+<<set $passage to "wordle">><<set $nextpass to "randomfromlist">>
+<<include "header">>
+<main>
+
+Make it so this word says "REDO"
+
+<div class="wordcontainer">
+  <div class = "letter-item r">
+      R
+  </div>
+  <div class = "letter-item e">
+      E
+  </div>
+  <div class = "letter-item d">
+    <<textbox "$d" "">>
+  </div>
+  <div class = "letter-item o">
+    <<textbox "$o" "">>
+  </div>
+</div>
+
+
+<div class = "nextplaceholder">
+	<<button "Submit">>
+
+  <<if $d.toUpperCase() is  "D">>
+      <<replace ".d">>
+        D
+      <</replace>>
+  <</if>>
+  <<if $o.toUpperCase() is  "O">>
+      <<replace ".o">>
+          O
+      <</replace>>
+  <</if>>
+    <<if $d.toUpperCase() is "D" and $o.toUpperCase() is "O">>
+    <<replace ".nextplaceholder">>
+   	 <<button "next">><<set $prevpass to $passage>><<goto "randomfromlist">>
+   	 <</button>>
+    <</replace>>
+  <</if>>
+<</button>>
+</div>
+
+
+</main>
+<<include "footer">>
+
+
+:: generatecodes {"position":"450,325","size":"100,100"}
+<<set $passage to "generatecodes">><<set $nextpass to "generatecodes">>
+<<include "header">>
+<main>
+
+<<set $code1 to setup.generate5LetterCode()>>
+<<set $code2 to setup.generate5LetterCode()>>
+<<set $code3 to setup.generate5LetterCode()>>
+
+<<set $sixletterwordlist to ["BABBLE","ABASED","ABACUS","KEBABS","LABELS","MACAWS","NABBED","RABBIT","UGLIER","YACHTS"]>>
+<<set $randomsixletterword to $sixletterwordlist.random()>>
+Here is a random six letter word:
+$randomsixletterword
+
+Please input the 3 codes correctly:
+
+Code 1: $code1
+Code 2: $code2
+Code 3: $code3
+
+Code 1: <<textbox "$code1guess" "">>
+Code 2: <<textbox "$code2guess" "">>
+Code 3: <<textbox "$code3guess" "">>
+
+<<button "Submit">>
+<<if $code1 is $code1guess and $code2 is $code2guess and $code3 is $code3guess>>
+	<<set $prevpass to $passage>><<goto "allcorrect">>
+<<else>>
+	<<set $prevpass to $passage>><<goto "allnotcorrect">>
+<</if>>
+<</button>>
+
+<<button "next">><<set $prevpass to $passage>><<goto "wordle">><</button>>
+</main>
+<<include "footer">>
+
+
+:: allcorrect {"position":"450,475","size":"100,100"}
+<<set $passage to "badchoices">><<set $nextpass to "allcorrect">>
+<<include "header">>
+<main>
+All correct
+<<button "next">><<set $prevpass to $passage>><<goto "multiplechoicecode">><</button>>
+</main>
+<<include "footer">>
+
+
+:: allnotcorrect {"position":"575,475","size":"100,100"}
+<<set $passage to "badchoices">><<set $nextpass to "allnotcorrect">>
+<<include "header">>
+<main>
+All not correct
+<<button "next">><<set $prevpass to $passage>><<goto "multiplechoicecode">><</button>>
+</main>
+<<include "footer">>
+
+
+:: multiplechoicecode {"position":"450,600","size":"100,100"}
+<<set $passage to "badchoices">><<set $nextpass to "multiplechoicecode">>
+<<include "header">>
+<main>
+<<set $wrongcode1 to setup.generate5LetterCode()>>
+<<set $wrongcode2 to setup.generate5LetterCode()>>
+<<set $wrongcode3 to setup.generate5LetterCode()>>
+
+<<set $answers to [
+"<label><<checkbox '$code1chosen' false true>> $code1 C</label>",
+"<label><<checkbox '$code2chosen' false true>> $code2 C</label>",
+"<label><<checkbox '$code3chosen' false true>> $code3 C</label>",
+"<label><<checkbox '$wrongcode1chosen' false true>> $wrongcode1</label>",
+"<label><<checkbox '$wrongcode2chosen' false true>> $wrongcode2</label>",
+"<label><<checkbox '$wrongcode3chosen' false true>> $wrongcode3</label>"
+]>>
+
+The six letter word from earlier was:
+$randomsixletterword
+
+Pick the correct codes from before (they're followed by a 'C')
+
+<<for _i to 0; _i = $answers.length; _i++>>
+	<<run $answer = $answers.pluck()>>
+    $answer
+<</for>>
+
+<<button "Submit">>
+ <<if $code1chosen and $code2chosen and $code3chosen and !$wrongcode1chosen and !$wrongcode2chosen and !$wrongcode3chosen>>
+ 	<<replace ".codefeedback">>That's correct!<</replace>>
+ <<else>>
+ 	<<replace ".codefeedback">>That's incorrect<</replace>>
+ <</if>>
+<</button>>
+
+<div class = "codefeedback">
+</div>
+
+
+<<button "next">><<set $prevpass to $passage>><<goto "wordle">><</button>>
 </main>
 <<include "footer">>
 
