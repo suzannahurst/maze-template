@@ -402,8 +402,20 @@ word += alphabet[Math.round((alphabet.length-1)*Math.random())];
 <<set $passage to "landing">><<set $nextpass to "wordle">>
 <<include "header">>
 <main>
-  hello
-<<button "next">><<set $prevpass to $passage>><<goto "generatecodes">><</button>>
+  menu
+
+<<button "enter codeword">><<set $prevpass to $passage>><<goto "codeword">><</button>>
+<<button "playaudio">><<set $prevpass to $passage>><<goto "playaudio">><</button>>
+<<button "buttonchoice">><<set $prevpass to $passage>><<goto "buttonchoice">><</button>>
+<<button "captions">><<set $prevpass to $passage>><<goto "captions">><</button>>
+<<button "answeringlongquestion">><<set $prevpass to $passage>><<goto "answeringlongquestion">><</button>>
+<<button "map">><<set $prevpass to $passage>><<goto "map">><</button>>
+<<button "addletters">><<set $prevpass to $passage>><<goto "addletters">><</button>>
+<<button "choicetally">><<set $prevpass to $passage>><<goto "choices">><</button>>
+<<button "random from list">><<set $prevpass to $passage>><<goto "randomfromlist">><</button>>
+<<button "wordle">><<set $prevpass to $passage>><<goto "wordle">><</button>>
+<<button "wordle">><<set $prevpass to $passage>><<goto "wordle">><</button>>
+<<button "generate codes">><<set $prevpass to $passage>><<goto "generatecodes">><</button>>
 </main>
 <<include "footer">>
 
