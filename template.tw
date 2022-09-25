@@ -210,8 +210,8 @@ main{
 
 footer{
    display:flex;
-  justify-content: flex-start;
-  align-items: center; 
+  justify-content: space-between;
+  align-items: flex-end; 
   position:fixed;
   bottom: 0;
   padding: 2rem;
@@ -220,11 +220,32 @@ footer{
 }
 
 nav{
-  display:flex
+  display:flex;
+    justify-content: space-between;
+}
+
+.nav-wrapper{
+display:flex;
+  flex-direction:column;
+align-items: flex-start
+}
+
+.nav-wrapper:last-child{
+align-items: flex-end
 }
 
 .nav-item{
-  margin-inline-end: 1.5rem
+  margin-block-end: 1.5rem
+}
+
+.nav-item:last-child{
+  margin-block-end: 0
+}
+
+
+.nav-wrapper:last-child{
+display:flex;
+align-items: flex-end
 }
 
 .menu-wrapper{
@@ -375,12 +396,9 @@ iFrame.classList.add("map")
 iFrame.setAttribute("loading", "lazy")
 iFrame.setAttribute("referrerpolicy", "no-referrer-when-downgrade")
 // iFrame.setAttribute("allowfullscreen")
-iFrame.setAttribute("src", `https://www.google.com/maps/embed/v1/directions?key=AIzaSyALqUsSyaTycZPpxIkDGMWukm2P7cmLsQs&center=${latorg},${longorg}&zoom=17&origin=${latorg},${longorg}
-  &destination=${latdest},${longdest}&mode=walking`)
+iFrame.setAttribute("src", `https://www.google.com/maps/embed/v1/directions?key=AIzaSyBDRwRTMpSybNcmgkYVX1yZ0YmBbNhs9qU&center=${latorg},${longorg}&zoom=17&origin=${latorg},${longorg}&destination=${latdest},${longdest}&mode=walking`)
 const mount = document.getElementById("mapMount")
-console.log(iFrame)
 return iFrame
-// this.mapMount.appendChild(iFrame)
 }
 
 //Get random 5 letter word
@@ -406,13 +424,22 @@ word += alphabet[Math.round((alphabet.length-1)*Math.random())];
 
 
 :: footer {"position":"100,350","size":"100,100"}
-<footer><nav><div class="nav-item"><<button REPLAY>><<goto $passage>><</button>> </div>
-<div class="nav-item"><<button "BACK">><<goto $prevpass>><</button>></div>
-<div class="nav-item"><<button "MENU">><<goto "landing">><</button>></div></nav></footer>
+<footer><div class="nav-wrapper "><div class="nav-item"><<button "Replay">><<goto $passage>><</button>> </div><div class="nav-item"><<button "Back">><<goto $prevpass>><</button>></div></div><div class="nav-wrapper"><div class="nav-item"><<button "I'm lost">><<goto "lost">><</button>></div></div></footer>
 
+:: lost {"position":"450,125","size":"100,100"}
+<<set $passage to "lost">><<include "header">>
+<main>
+Sorry to hear that you're lost! 
+You have two options:
+
+<<button "Begin the adventure again">><<goto "landing">><</button>>
+
+<<button "Take me straight to the end location!">><<goto "end">><</button>>
+</main>
+<<include "footer">>
 
 :: landing {"position":"450,125","size":"100,100"}
-<<set $passage to "landing">><<set $nextpass to "wordle">>
+<<set $passage to "landing">>
 <<include "header">>
 <main>
   menu
@@ -436,7 +463,7 @@ word += alphabet[Math.round((alphabet.length-1)*Math.random())];
 
 
 :: codeword {"position":"450,1450","size":"100,100"}
-<<set $passage to "landing">><<set $nextpass to "playaudio">>
+<<set $passage to "landing">>
 <<include "header">>
 <main>
 Enter codeword 
@@ -470,7 +497,7 @@ which is codeword:
 
 :: playaudio {"position":"450,1600","size":"100,100"}
 <<include "header">>
-<<set $passage to "playaudio">><<set $nextpass to "buttonchoice">>
+<<set $passage to "playaudio">>
 <<audio "badjoke" play>>
 <<include "header">><<include "footer">>
 <main>playing audio which continues playing on next passage
@@ -479,7 +506,7 @@ which is codeword:
 
 
 :: buttonchoice {"position":"450,1725","size":"100,100"}
-<<set $passage to "buttonchoice">><<set $nextpass to "buttonchoice">>
+<<set $passage to "buttonchoice">>
 <<include "header">>
 <main>
   <div class="door-container">
@@ -508,7 +535,7 @@ Door B
 
 
 :: captions {"position":"450,1875","size":"100,100"}
-<<set $passage to "captions">><<set $nextpass to "goingbacktochoice">>
+<<set $passage to "captions">>
 <<include "header">>
 <main>
   <div id="captions"></div>
@@ -522,7 +549,7 @@ Door B
 
 
 :: goingbacktochoice {"position":"450,2000","size":"100,100"}
-<<set $passage to "goingbacktochoice">><<set $nextpass to "answeringlongquestion">><<include "header">>
+<<set $passage to "goingbacktochoice">><<include "header">>
 <main>
 Which door did you choose?
 
@@ -535,7 +562,7 @@ Which door did you choose?
 
 
 :: answeringlongquestion {"position":"450,2150","size":"100,100"}
-<<set $passage to "answeringlongquestion">><<set $nextpass to "results">><<include "header">>
+<<set $passage to "answeringlongquestion">><<include "header">>
 <main>
 <<textarea "$answer"" Write your answer here">>
 <<button "Enter">><<goto "results">><</button>>
@@ -547,7 +574,7 @@ Which door did you choose?
 
 
 :: results {"position":"450,2300","size":"100,100"}
-<<set $passage to "results">><<set $nextpass to "map">>
+<<set $passage to "results">>
 <<include "header">>
 <main>
 Your long answer to the question was: 
@@ -559,7 +586,7 @@ $answer
 
 
 :: map {"position":"450,2425","size":"100,100"}
-<<set $passage to "map">><<set $nextpass to "map">>
+<<set $passage to "map">>
 <<include "header">><<set $myMap = setup.generateDirectionsMap(51.515145100985166,-0.08905860787295125,51.51341581900639, -0.0850674807043743)>>
 <main>$myMap
 Wish list: get rid of the More options/directions box!
@@ -570,7 +597,7 @@ Wish list: get rid of the More options/directions box!
 
 
 :: addletters {"position":"450,1325","size":"100,100"}
-<<set $passage to "addletters">><<set $nextpass to "wordminusletters">>
+<<set $passage to "addletters">>
 <<include "header">>
 <main>
  Enter 6-8 letters:
@@ -595,7 +622,7 @@ Wish list: get rid of the More options/directions box!
 
 
 :: wordminusletters {"position":"575,1325","size":"100,100"}
-<<set $passage to "wordminusletters">><<set $nextpass to "codeword">>
+<<set $passage to "wordminusletters">>
 <<include "header">>
 <main>
 Original letters: $letters
@@ -609,7 +636,7 @@ Original letters minus 2 random letters: $letters
 
 
 :: choices {"position":"450,1050","size":"100,100"}
-<<set $passage to "landing">><<set $nextpass to "choices">>
+<<set $passage to "landing">>
 <<include "header">>
 <main>
 
@@ -638,7 +665,7 @@ Original letters minus 2 random letters: $letters
 
 
 :: badchoices {"position":"450,1175","size":"100,100"}
-<<set $passage to "badchoices">><<set $nextpass to "addletters">>
+<<set $passage to "badchoices">>
 <<include "header">>
 <main>
  You made bad choices...
@@ -648,7 +675,7 @@ Original letters minus 2 random letters: $letters
 
 
 :: goodchoices {"position":"575,1175","size":"100,100"}
-<<set $passage to "goodchoices">><<set $nextpass to "addletters">>
+<<set $passage to "goodchoices">>
 <<include "header">>
 <main>
  You made good choices...
@@ -658,7 +685,7 @@ Original letters minus 2 random letters: $letters
 
 
 :: randomfromlist {"position":"450,900","size":"100,100"}
-<<set $passage to "randomfromlist">><<set $nextpass to "choices">>
+<<set $passage to "randomfromlist">>
 <<include "header">>
 <main>
 <<set $list to ['Rock','Paper','Scissors']>>
@@ -675,7 +702,7 @@ $list
 
 
 :: wordle {"position":"450,725","size":"100,100"}
-<<set $passage to "wordle">><<set $nextpass to "randomfromlist">>
+<<set $passage to "wordle">>
 <<include "header">>
 <main>
 
@@ -725,7 +752,7 @@ Make it so this word says "REDO"
 
 
 :: generatecodes {"position":"450,325","size":"100,100"}
-<<set $passage to "generatecodes">><<set $nextpass to "generatecodes">>
+<<set $passage to "generatecodes">><
 <<include "header">>
 <main><<set $code1 to setup.generate5LetterCode()>>
 <<set $code2 to setup.generate5LetterCode()>>
@@ -757,7 +784,7 @@ Code 3: <<textbox "$code3guess" "">>
 
 
 :: allcorrect {"position":"450,475","size":"100,100"}
-<<set $passage to "badchoices">><<set $nextpass to "allcorrect">>
+<<set $passage to "badchoices">>
 <<include "header">>
 <main>
 All correct
@@ -767,7 +794,7 @@ All correct
 
 
 :: allnotcorrect {"position":"575,475","size":"100,100"}
-<<set $passage to "badchoices">><<set $nextpass to "allnotcorrect">>
+<<set $passage to "badchoices">>
 <<include "header">>
 <main>
 All not correct
@@ -819,4 +846,36 @@ Pick the correct codes from before (they're followed by a 'C')
 </main>
 <<include "footer">>
 
+:: countdown {"position":"450,1875","size":"100,100"}
+<<set $passage to "countdown">>
+<<include "header">>
+<main>
+<<set $seconds to 30>>
+Countdown: <span id="countdown">$seconds seconds remaining</span>!\
+<<silently>>
+	<<repeat 1s>>
+		<<set $seconds to $seconds - 1>>
+		<<if $seconds gt 0>>
+			<<replace "#countdown">>$seconds seconds remaining<</replace>>
+		<<else>>
+			<<replace "#countdown">>Times up!<</replace>>
+			<<set $prevpass to $passage>><<goto "landing">>
+			<<stop>>
+		<</if>>
+	<</repeat>>
+<</silently>>
+</main>
+<<include "footer">>
 
+
+
+:: end {"position":"450,1875","size":"100,100"}
+<<set $passage to "19">><<set $endMap = setup.generateDirectionsMap(51.515145100985166,-0.08905860787295125,51.51341581900639, -0.0850674807043743)>><<include "header">>
+<main>
+
+End location
+
+$endMap
+  
+</main>
+<<include "footer">>
