@@ -387,6 +387,32 @@ textarea{
   	margin-inline-end:10px;
 }
 
+.detector{
+ width: 50%;
+}
+
+.spinning{
+
+  animation-name: spin;
+  animation-duration: 2000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear; 
+  /* transform: rotate(3deg); */
+   /* transform: rotate(0.3rad);/ */
+   /* transform: rotate(3grad); */ 
+   /* transform: rotate(.03turn);  */
+}
+
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
+}
+
+
 /* MAP */
 	.map{
 width: 100%;
@@ -500,8 +526,10 @@ setup.checkForRepeats = (array,element) => {
  const duplicates = arrayCopy.filter((item, index) => index !== arrayCopy.indexOf(item));
  return duplicates.contains(element)
 }</script><tw-passagedata pid="1" name="StoryInit" tags="" position="100,100" size="100,100">&lt;&lt;cacheaudio &quot;badjoke&quot; &quot;https://youhavefoundconey.net/CG/what/assets/audio/badjoke.mp3&quot;&gt;&gt;
-&lt;&lt;waitforaudio&gt;&gt;</tw-passagedata><tw-passagedata pid="2" name="header" tags="" position="100,225" size="100,100">&lt;header&gt;Adventure Functionality /
- Structure Template&lt;/header&gt;</tw-passagedata><tw-passagedata pid="3" name="footer" tags="" position="100,350" size="100,100">&lt;footer&gt;&lt;div class=&quot;nav-wrapper &quot;&gt;&lt;div class=&quot;nav-item&quot;&gt;&lt;&lt;button &quot;Replay&quot;&gt;&gt;&lt;&lt;goto $passage&gt;&gt;&lt;&lt;/button&gt;&gt; &lt;/div&gt;&lt;div class=&quot;nav-item&quot;&gt;&lt;&lt;button &quot;Back&quot;&gt;&gt;&lt;&lt;goto $prevpass&gt;&gt;&lt;&lt;/button&gt;&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;nav-wrapper&quot;&gt;&lt;div class=&quot;nav-item&quot;&gt;&lt;&lt;button &quot;I&#39;m lost&quot;&gt;&gt;&lt;&lt;goto &quot;lost&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;&lt;/div&gt;&lt;/div&gt;&lt;/footer&gt;</tw-passagedata><tw-passagedata pid="4" name="lost" tags="" position="450,50" size="100,100">&lt;&lt;set $passage to &quot;lost&quot;&gt;&gt;&lt;&lt;include &quot;header&quot;&gt;&gt;
+&lt;&lt;waitforaudio&gt;&gt;
+
+</tw-passagedata><tw-passagedata pid="2" name="header" tags="" position="100,225" size="100,100">&lt;header&gt;Adventure Functionality /
+ Structure Template&lt;/header&gt;</tw-passagedata><tw-passagedata pid="3" name="footer" tags="" position="100,375" size="100,100">&lt;footer&gt;&lt;div class=&quot;nav-wrapper &quot;&gt;&lt;div class=&quot;nav-item&quot;&gt;&lt;&lt;button &quot;Replay&quot;&gt;&gt;&lt;&lt;goto $passage&gt;&gt;&lt;&lt;/button&gt;&gt; &lt;/div&gt;&lt;div class=&quot;nav-item&quot;&gt;&lt;&lt;button &quot;Back&quot;&gt;&gt;&lt;&lt;goto $prevpass&gt;&gt;&lt;&lt;/button&gt;&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;nav-wrapper&quot;&gt;&lt;div class=&quot;nav-item&quot;&gt;&lt;&lt;button &quot;I&#39;m lost&quot;&gt;&gt;&lt;&lt;goto &quot;lost&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;&lt;/div&gt;&lt;/div&gt;&lt;/footer&gt;</tw-passagedata><tw-passagedata pid="4" name="lost" tags="" position="450,50" size="100,100">&lt;&lt;set $passage to &quot;lost&quot;&gt;&gt;&lt;&lt;include &quot;header&quot;&gt;&gt;
 &lt;main&gt;
 Sorry to hear that you&#39;re lost! 
 You have two options:
@@ -529,9 +557,10 @@ You have two options:
   &lt;&lt;button &quot;generate codes&quot;&gt;&gt;&lt;&lt;set $prevpass to $passage&gt;&gt;&lt;&lt;goto &quot;generatecodes&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;
     &lt;&lt;button &quot;stamp game easy&quot;&gt;&gt;&lt;&lt;set $prevpass to $passage&gt;&gt;&lt;&lt;goto &quot;stampgameeasy&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;
      &lt;&lt;button &quot;stamp game hard&quot;&gt;&gt;&lt;&lt;set $prevpass to $passage&gt;&gt;&lt;&lt;goto &quot;stampgamehard&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;
+          &lt;&lt;button &quot;ghost detector&quot;&gt;&gt;&lt;&lt;set $prevpass to $passage&gt;&gt;&lt;&lt;goto &quot;ghostdetector&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;
 &lt;/div&gt;
 &lt;/main&gt;
-&lt;&lt;include &quot;footer&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="6" name="codeword" tags="" position="450,1725" size="100,100">&lt;&lt;set $passage to &quot;landing&quot;&gt;&gt;
+&lt;&lt;include &quot;footer&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="6" name="codeword" tags="" position="450,1875" size="100,100">&lt;&lt;set $passage to &quot;landing&quot;&gt;&gt;
 &lt;&lt;include &quot;header&quot;&gt;&gt;
 &lt;main&gt;
 Enter codeword 
@@ -560,13 +589,13 @@ which is codeword:
   &lt;&lt;/if&gt;&gt;&lt;&lt;/button&gt;&gt;
   &lt;/div&gt;
   &lt;/main&gt;
-  &lt;&lt;include &quot;footer&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="7" name="playaudio" tags="" position="450,1875" size="100,100">&lt;&lt;include &quot;header&quot;&gt;&gt;
+  &lt;&lt;include &quot;footer&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="7" name="playaudio" tags="" position="450,2000" size="100,100">&lt;&lt;include &quot;header&quot;&gt;&gt;
 &lt;&lt;set $passage to &quot;playaudio&quot;&gt;&gt;
 &lt;&lt;audio &quot;badjoke&quot; play&gt;&gt;
 &lt;&lt;include &quot;header&quot;&gt;&gt;&lt;&lt;include &quot;footer&quot;&gt;&gt;
 &lt;main&gt;playing audio which continues playing on next passage
 &lt;&lt;button &quot;next&quot;&gt;&gt;&lt;&lt;set $prevpass to $passage&gt;&gt;&lt;&lt;goto &quot;buttonchoice&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;&lt;/main&gt;
-&lt;&lt;include &quot;footer&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="8" name="buttonchoice" tags="" position="450,2000" size="100,100">&lt;&lt;set $passage to &quot;buttonchoice&quot;&gt;&gt;
+&lt;&lt;include &quot;footer&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="8" name="buttonchoice" tags="" position="450,2150" size="100,100">&lt;&lt;set $passage to &quot;buttonchoice&quot;&gt;&gt;
 &lt;&lt;include &quot;header&quot;&gt;&gt;
 &lt;main&gt;
   &lt;div class=&quot;door-container&quot;&gt;
@@ -575,15 +604,15 @@ which is codeword:
   &lt;&lt;timed 3s&gt;&gt;&lt;div class=&quot;door-item&quot;&gt;&lt;span&gt;DOOR B&lt;/span&gt;&lt;&lt;button [img[&quot;https://youhavefoundconey.net/CG/what/assets/img/door-white.png&quot;][Door B]]&gt;&gt;&lt;&lt;set $doorchoice to &quot;B&quot;&gt;&gt;&lt;&lt;set $prevpass to $passage&gt;&gt;&lt;&lt;goto &quot;doorB&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;&lt;/div&gt;&lt;&lt;/timed&gt;&gt;
   &lt;/div&gt;
 &lt;/main&gt;
-&lt;&lt;include &quot;footer&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="9" name="doorA" tags="" position="625,2025" size="100,100">&lt;&lt;include &quot;header&quot;&gt;&gt;
+&lt;&lt;include &quot;footer&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="9" name="doorA" tags="" position="625,2175" size="100,100">&lt;&lt;include &quot;header&quot;&gt;&gt;
 &lt;main&gt;
 Door A
   &lt;&lt;timed 2s&gt;&gt;&lt;&lt;goto &quot;captions&quot;&gt;&gt;&lt;&lt;/timed&gt;&gt;
-&lt;/main&gt;</tw-passagedata><tw-passagedata pid="10" name="doorB" tags="" position="750,2025" size="100,100">&lt;&lt;include &quot;header&quot;&gt;&gt;
+&lt;/main&gt;</tw-passagedata><tw-passagedata pid="10" name="doorB" tags="" position="750,2175" size="100,100">&lt;&lt;include &quot;header&quot;&gt;&gt;
 &lt;main&gt;
 Door B
   &lt;&lt;timed 2s&gt;&gt;&lt;&lt;goto &quot;captions&quot;&gt;&gt;&lt;&lt;/timed&gt;&gt;
-&lt;/main&gt;</tw-passagedata><tw-passagedata pid="11" name="captions" tags="" position="450,2150" size="100,100">&lt;&lt;set $passage to &quot;captions&quot;&gt;&gt;
+&lt;/main&gt;</tw-passagedata><tw-passagedata pid="11" name="captions" tags="" position="450,2300" size="100,100">&lt;&lt;set $passage to &quot;captions&quot;&gt;&gt;
 &lt;&lt;include &quot;header&quot;&gt;&gt;
 &lt;main&gt;
   &lt;div id=&quot;captions&quot;&gt;&lt;/div&gt;
@@ -593,7 +622,7 @@ Door B
 
 &lt;&lt;button &quot;next&quot;&gt;&gt;&lt;&lt;set $prevpass to $passage&gt;&gt;&lt;&lt;goto &quot;goingbacktochoice&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;
 &lt;/main&gt;
-&lt;&lt;include &quot;footer&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="12" name="goingbacktochoice" tags="" position="450,2275" size="100,100">&lt;&lt;set $passage to &quot;goingbacktochoice&quot;&gt;&gt;&lt;&lt;include &quot;header&quot;&gt;&gt;
+&lt;&lt;include &quot;footer&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="12" name="goingbacktochoice" tags="" position="450,2425" size="100,100">&lt;&lt;set $passage to &quot;goingbacktochoice&quot;&gt;&gt;&lt;&lt;include &quot;header&quot;&gt;&gt;
 &lt;main&gt;
 Which door did you choose?
 
@@ -602,7 +631,7 @@ Which door did you choose?
 
 &lt;&lt;button &quot;next&quot;&gt;&gt;&lt;&lt;set $prevpass to $passage&gt;&gt;&lt;&lt;goto &quot;answeringlongquestion&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;
 &lt;/main&gt;
-&lt;&lt;include &quot;footer&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="13" name="answeringlongquestion" tags="" position="450,2425" size="100,100">&lt;&lt;set $passage to &quot;answeringlongquestion&quot;&gt;&gt;&lt;&lt;include &quot;header&quot;&gt;&gt;
+&lt;&lt;include &quot;footer&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="13" name="answeringlongquestion" tags="" position="450,2575" size="100,100">&lt;&lt;set $passage to &quot;answeringlongquestion&quot;&gt;&gt;&lt;&lt;include &quot;header&quot;&gt;&gt;
 &lt;main&gt;
 &lt;&lt;textarea &quot;$answer&quot;&quot; Write your answer here&quot;&gt;&gt;
 &lt;&lt;button &quot;Enter&quot;&gt;&gt;&lt;&lt;goto &quot;results&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;
@@ -610,7 +639,7 @@ Which door did you choose?
 &lt;&lt;button &quot;next&quot;&gt;&gt;&lt;&lt;set $prevpass to $passage&gt;&gt;&lt;&lt;goto &quot;results&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;
 
 &lt;/main&gt;
-&lt;&lt;include &quot;footer&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="14" name="results" tags="" position="450,2575" size="100,100">&lt;&lt;set $passage to &quot;results&quot;&gt;&gt;
+&lt;&lt;include &quot;footer&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="14" name="results" tags="" position="450,2725" size="100,100">&lt;&lt;set $passage to &quot;results&quot;&gt;&gt;
 &lt;&lt;include &quot;header&quot;&gt;&gt;
 &lt;main&gt;
 Your long answer to the question was: 
@@ -618,14 +647,14 @@ $answer
 
 &lt;&lt;button &quot;next&quot;&gt;&gt;&lt;&lt;set $prevpass to $passage&gt;&gt;&lt;&lt;goto &quot;map&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;
 &lt;/main&gt;
-&lt;&lt;include &quot;footer&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="15" name="map" tags="" position="450,2700" size="100,100">&lt;&lt;set $passage to &quot;map&quot;&gt;&gt;
+&lt;&lt;include &quot;footer&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="15" name="map" tags="" position="450,2850" size="100,100">&lt;&lt;set $passage to &quot;map&quot;&gt;&gt;
 &lt;&lt;include &quot;header&quot;&gt;&gt;&lt;&lt;set $myMap = setup.generateDirectionsMap(51.515145100985166,-0.08905860787295125,51.51341581900639, -0.0850674807043743)&gt;&gt;
 &lt;main&gt;$myMap
 Wish list: get rid of the More options/directions box!
 
 &lt;&lt;button &quot;I&#39;m in the right place&quot;&gt;&gt;&lt;&lt;set $prevpass to $passage&gt;&gt;&lt;&lt;goto &quot;map&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;
 &lt;/main&gt;
-&lt;&lt;include &quot;footer&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="16" name="addletters" tags="" position="450,1600" size="100,100">&lt;&lt;set $passage to &quot;addletters&quot;&gt;&gt;
+&lt;&lt;include &quot;footer&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="16" name="addletters" tags="" position="450,1750" size="100,100">&lt;&lt;set $passage to &quot;addletters&quot;&gt;&gt;
 &lt;&lt;include &quot;header&quot;&gt;&gt;
 &lt;main&gt;
  Enter 6-8 letters:
@@ -646,7 +675,7 @@ Wish list: get rid of the More options/directions box!
 &lt;&lt;else&gt;&gt;&lt;&lt;replace &quot;#lettersresult&quot;&gt;&gt;Must be 6-8 letters, please try again&lt;&lt;/replace&gt;&gt;
 &lt;&lt;/if&gt;&gt;&lt;&lt;/button&gt;&gt;
 &lt;/main&gt;
-&lt;&lt;include &quot;footer&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="17" name="wordminusletters" tags="" position="575,1600" size="100,100">&lt;&lt;set $passage to &quot;wordminusletters&quot;&gt;&gt;
+&lt;&lt;include &quot;footer&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="17" name="wordminusletters" tags="" position="575,1750" size="100,100">&lt;&lt;set $passage to &quot;wordminusletters&quot;&gt;&gt;
 &lt;&lt;include &quot;header&quot;&gt;&gt;
 &lt;main&gt;
 Original letters: $letters
@@ -656,7 +685,7 @@ Original letters: $letters
 Original letters minus 2 random letters: $letters
 &lt;&lt;button &quot;next&quot;&gt;&gt;&lt;&lt;set $prevpass to $passage&gt;&gt;&lt;&lt;goto &quot;codeword&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;
 &lt;/main&gt;
-&lt;&lt;include &quot;footer&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="18" name="choices" tags="" position="450,1325" size="100,100">&lt;&lt;set $passage to &quot;landing&quot;&gt;&gt;
+&lt;&lt;include &quot;footer&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="18" name="choices" tags="" position="450,1475" size="100,100">&lt;&lt;set $passage to &quot;landing&quot;&gt;&gt;
 &lt;&lt;include &quot;header&quot;&gt;&gt;
 &lt;main&gt;
 
@@ -681,19 +710,19 @@ Original letters minus 2 random letters: $letters
 
 &lt;div id=&quot;choicetally&quot;&gt;0&lt;/div&gt;
 
-&lt;/main&gt;</tw-passagedata><tw-passagedata pid="19" name="badchoices" tags="" position="450,1450" size="100,100">&lt;&lt;set $passage to &quot;badchoices&quot;&gt;&gt;
+&lt;/main&gt;</tw-passagedata><tw-passagedata pid="19" name="badchoices" tags="" position="450,1600" size="100,100">&lt;&lt;set $passage to &quot;badchoices&quot;&gt;&gt;
 &lt;&lt;include &quot;header&quot;&gt;&gt;
 &lt;main&gt;
  You made bad choices...
 &lt;&lt;button &quot;next&quot;&gt;&gt;&lt;&lt;set $prevpass to $passage&gt;&gt;&lt;&lt;goto &quot;addletters&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;
 &lt;/main&gt;
-&lt;&lt;include &quot;footer&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="20" name="goodchoices" tags="" position="575,1450" size="100,100">&lt;&lt;set $passage to &quot;goodchoices&quot;&gt;&gt;
+&lt;&lt;include &quot;footer&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="20" name="goodchoices" tags="" position="575,1600" size="100,100">&lt;&lt;set $passage to &quot;goodchoices&quot;&gt;&gt;
 &lt;&lt;include &quot;header&quot;&gt;&gt;
 &lt;main&gt;
  You made good choices...
 &lt;&lt;button &quot;next&quot;&gt;&gt;&lt;&lt;set $prevpass to $passage&gt;&gt;&lt;&lt;goto &quot;addletters&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;
 &lt;/main&gt;
-&lt;&lt;include &quot;footer&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="21" name="randomfromlist" tags="" position="450,1175" size="100,100">&lt;&lt;set $passage to &quot;randomfromlist&quot;&gt;&gt;
+&lt;&lt;include &quot;footer&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="21" name="randomfromlist" tags="" position="450,1325" size="100,100">&lt;&lt;set $passage to &quot;randomfromlist&quot;&gt;&gt;
 &lt;&lt;include &quot;header&quot;&gt;&gt;
 &lt;main&gt;
 &lt;&lt;set $list to [&#39;Rock&#39;,&#39;Paper&#39;,&#39;Scissors&#39;]&gt;&gt;
@@ -706,7 +735,7 @@ $list
 
 &lt;&lt;button &quot;next&quot;&gt;&gt;&lt;&lt;set $prevpass to $passage&gt;&gt;&lt;&lt;goto &quot;addletters&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;
 &lt;/main&gt;
-&lt;&lt;include &quot;footer&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="22" name="wordle" tags="" position="450,1000" size="100,100">&lt;&lt;set $passage to &quot;wordle&quot;&gt;&gt;
+&lt;&lt;include &quot;footer&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="22" name="wordle" tags="" position="450,1150" size="100,100">&lt;&lt;set $passage to &quot;wordle&quot;&gt;&gt;
 &lt;&lt;include &quot;header&quot;&gt;&gt;
 &lt;main&gt;
 
@@ -752,7 +781,7 @@ Make it so this word says &quot;REDO&quot;
 
 
 &lt;/main&gt;
-&lt;&lt;include &quot;footer&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="23" name="generatecodes" tags="" position="450,600" size="100,100">&lt;&lt;set $passage to &quot;generatecodes&quot;&gt;&gt;&lt;
+&lt;&lt;include &quot;footer&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="23" name="generatecodes" tags="" position="450,750" size="100,100">&lt;&lt;set $passage to &quot;generatecodes&quot;&gt;&gt;&lt;
 &lt;&lt;include &quot;header&quot;&gt;&gt;
 &lt;main&gt;&lt;&lt;set $code1 to setup.generate5LetterCode()&gt;&gt;
 &lt;&lt;set $code2 to setup.generate5LetterCode()&gt;&gt;
@@ -780,19 +809,19 @@ Code 3: &lt;&lt;textbox &quot;$code3guess&quot; &quot;&quot;&gt;&gt;
 
 &lt;&lt;button &quot;next&quot;&gt;&gt;&lt;&lt;set $prevpass to $passage&gt;&gt;&lt;&lt;goto &quot;wordle&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;
 &lt;/main&gt;
-&lt;&lt;include &quot;footer&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="24" name="allcorrect" tags="" position="450,750" size="100,100">&lt;&lt;set $passage to &quot;badchoices&quot;&gt;&gt;
+&lt;&lt;include &quot;footer&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="24" name="allcorrect" tags="" position="450,900" size="100,100">&lt;&lt;set $passage to &quot;badchoices&quot;&gt;&gt;
 &lt;&lt;include &quot;header&quot;&gt;&gt;
 &lt;main&gt;
 All correct
 &lt;&lt;button &quot;next&quot;&gt;&gt;&lt;&lt;set $prevpass to $passage&gt;&gt;&lt;&lt;goto &quot;multiplechoicecode&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;
 &lt;/main&gt;
-&lt;&lt;include &quot;footer&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="25" name="allnotcorrect" tags="" position="575,750" size="100,100">&lt;&lt;set $passage to &quot;badchoices&quot;&gt;&gt;
+&lt;&lt;include &quot;footer&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="25" name="allnotcorrect" tags="" position="575,900" size="100,100">&lt;&lt;set $passage to &quot;badchoices&quot;&gt;&gt;
 &lt;&lt;include &quot;header&quot;&gt;&gt;
 &lt;main&gt;
 All not correct
 &lt;&lt;button &quot;next&quot;&gt;&gt;&lt;&lt;set $prevpass to $passage&gt;&gt;&lt;&lt;goto &quot;multiplechoicecode&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;
 &lt;/main&gt;
-&lt;&lt;include &quot;footer&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="26" name="multiplechoicecode" tags="" position="450,875" size="100,100">&lt;&lt;set $passage to &quot;badchoices&quot;&gt;&gt;&lt;&lt;set $nextpass to &quot;multiplechoicecode&quot;&gt;&gt;
+&lt;&lt;include &quot;footer&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="26" name="multiplechoicecode" tags="" position="450,1025" size="100,100">&lt;&lt;set $passage to &quot;badchoices&quot;&gt;&gt;&lt;&lt;set $nextpass to &quot;multiplechoicecode&quot;&gt;&gt;
 &lt;&lt;include &quot;header&quot;&gt;&gt;
 &lt;main&gt;
 &lt;&lt;set $wrongcode1 to setup.generate5LetterCode()&gt;&gt;
@@ -832,7 +861,7 @@ Pick the correct codes from before (they&#39;re followed by a &#39;C&#39;)
 
 &lt;&lt;button &quot;next&quot;&gt;&gt;&lt;&lt;set $prevpass to $passage&gt;&gt;&lt;&lt;goto &quot;wordle&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;
 &lt;/main&gt;
-&lt;&lt;include &quot;footer&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="27" name="countdown" tags="" position="450,2150" size="100,100">&lt;&lt;set $passage to &quot;countdown&quot;&gt;&gt;
+&lt;&lt;include &quot;footer&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="27" name="countdown" tags="" position="450,2300" size="100,100">&lt;&lt;set $passage to &quot;countdown&quot;&gt;&gt;
 &lt;&lt;include &quot;header&quot;&gt;&gt;
 &lt;main&gt;
 &lt;&lt;set $seconds to 30&gt;&gt;
@@ -850,7 +879,7 @@ Countdown: &lt;span id=&quot;countdown&quot;&gt;$seconds seconds remaining&lt;/s
 	&lt;&lt;/repeat&gt;&gt;
 &lt;&lt;/silently&gt;&gt;
 &lt;/main&gt;
-&lt;&lt;include &quot;footer&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="28" name="end" tags="" position="450,2150" size="100,100">&lt;&lt;set $passage to &quot;19&quot;&gt;&gt;&lt;&lt;set $endMap = setup.generateDirectionsMap(51.515145100985166,-0.08905860787295125,51.51341581900639, -0.0850674807043743)&gt;&gt;&lt;&lt;include &quot;header&quot;&gt;&gt;
+&lt;&lt;include &quot;footer&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="28" name="end" tags="" position="450,2300" size="100,100">&lt;&lt;set $passage to &quot;19&quot;&gt;&gt;&lt;&lt;set $endMap = setup.generateDirectionsMap(51.515145100985166,-0.08905860787295125,51.51341581900639, -0.0850674807043743)&gt;&gt;&lt;&lt;include &quot;header&quot;&gt;&gt;
 &lt;main&gt;
 
 End location
@@ -858,7 +887,7 @@ End location
 $endMap
   
 &lt;/main&gt;
-&lt;&lt;include &quot;footer&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="29" name="stampgameeasy" tags="" position="450,250" size="100,100">&lt;&lt;set $passage to &quot;stampgameeasy&quot;&gt;&gt;
+&lt;&lt;include &quot;footer&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="29" name="stampgameeasy" tags="" position="450,400" size="100,100">&lt;&lt;set $passage to &quot;stampgameeasy&quot;&gt;&gt;
 &lt;&lt;include &quot;header&quot;&gt;&gt;
 &lt;main&gt;
 
@@ -912,7 +941,7 @@ Click the button if you see the same stamp twice.
 &lt;&lt;button &quot;next&quot;&gt;&gt;&lt;&lt;set $prevpass to $passage&gt;&gt;&lt;&lt;goto &quot;stampgamehard&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;
 &lt;/main&gt;
 &lt;&lt;include &quot;footer&quot;&gt;&gt;
-</tw-passagedata><tw-passagedata pid="30" name="stampgamehard" tags="" position="450,400" size="100,100">&lt;&lt;set $passage to &quot;stampgameeasy&quot;&gt;&gt;
+</tw-passagedata><tw-passagedata pid="30" name="stampgamehard" tags="" position="450,550" size="100,100">&lt;&lt;set $passage to &quot;stampgameeasy&quot;&gt;&gt;
 &lt;&lt;include &quot;header&quot;&gt;&gt;
 &lt;main&gt;
 
@@ -965,6 +994,27 @@ Click the button if you see the same stamp twice.
 &lt;/div&gt;
 
 &lt;&lt;button &quot;next&quot;&gt;&gt;&lt;&lt;set $prevpass to $passage&gt;&gt;&lt;&lt;goto &quot;generatecodes&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;
+&lt;/main&gt;
+&lt;&lt;include &quot;footer&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="31" name="ghostdetector" tags="" position="450,225" size="100,100">&lt;&lt;set $passage to &quot;badchoices&quot;&gt;&gt;
+&lt;&lt;include &quot;header&quot;&gt;&gt;
+&lt;main&gt;
+
+  &lt;div class = &quot;detector&quot;&gt;
+  &lt;&lt;set $spinning to false&gt;&gt;
+ 
+&lt;&lt;link &quot;&lt;img src = &#39;https://media3.giphy.com/media/1hpCPjWPnKpKLwAGIX/giphy.gif&#39;&gt;&quot; &gt;&gt;
+	&lt;&lt;if $spinning&gt;&gt;
+    	&lt;&lt;set $spinning to false&gt;&gt;
+        &lt;&lt;audio &quot;:all&quot; stop&gt;&gt;
+		&lt;&lt;removeclass &quot;.detector&quot; &quot;spinning&quot;&gt;&gt;
+    &lt;&lt;else&gt;&gt;
+   		&lt;&lt;set $spinning to true&gt;&gt;
+        &lt;&lt;audio &quot;badjoke&quot; play&gt;&gt;
+   	    &lt;&lt;addclass &quot;.detector&quot; &quot;spinning&quot;&gt;&gt;
+    &lt;&lt;/if&gt;&gt;
+&lt;&lt;/link&gt;&gt; 
+&lt;/div&gt;
+ 
 &lt;/main&gt;
 &lt;&lt;include &quot;footer&quot;&gt;&gt;</tw-passagedata></tw-storydata>
 	<script id="script-sugarcube" type="text/javascript">

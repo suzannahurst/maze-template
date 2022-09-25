@@ -302,6 +302,32 @@ textarea{
   	margin-inline-end:10px;
 }
 
+.detector{
+ width: 50%;
+}
+
+.spinning{
+
+  animation-name: spin;
+  animation-duration: 2000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear; 
+  /* transform: rotate(3deg); */
+   /* transform: rotate(0.3rad);/ */
+   /* transform: rotate(3grad); */ 
+   /* transform: rotate(.03turn);  */
+}
+
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
+}
+
+
 /* MAP */
 	.map{
 width: 100%;
@@ -431,7 +457,7 @@ setup.checkForRepeats = (array,element) => {
  Structure Template</header>
 
 
-:: footer {"position":"100,350","size":"100,100"}
+:: footer {"position":"100,375","size":"100,100"}
 <footer><div class="nav-wrapper "><div class="nav-item"><<button "Replay">><<goto $passage>><</button>> </div><div class="nav-item"><<button "Back">><<goto $prevpass>><</button>></div></div><div class="nav-wrapper"><div class="nav-item"><<button "I'm lost">><<goto "lost">><</button>></div></div></footer>
 
 
@@ -468,12 +494,13 @@ You have two options:
   <<button "generate codes">><<set $prevpass to $passage>><<goto "generatecodes">><</button>>
     <<button "stamp game easy">><<set $prevpass to $passage>><<goto "stampgameeasy">><</button>>
      <<button "stamp game hard">><<set $prevpass to $passage>><<goto "stampgamehard">><</button>>
+          <<button "ghost detector">><<set $prevpass to $passage>><<goto "ghostdetector">><</button>>
 </div>
 </main>
 <<include "footer">>
 
 
-:: codeword {"position":"450,1725","size":"100,100"}
+:: codeword {"position":"450,1875","size":"100,100"}
 <<set $passage to "landing">>
 <<include "header">>
 <main>
@@ -506,7 +533,7 @@ which is codeword:
   <<include "footer">>
 
 
-:: playaudio {"position":"450,1875","size":"100,100"}
+:: playaudio {"position":"450,2000","size":"100,100"}
 <<include "header">>
 <<set $passage to "playaudio">>
 <<audio "badjoke" play>>
@@ -516,7 +543,7 @@ which is codeword:
 <<include "footer">>
 
 
-:: buttonchoice {"position":"450,2000","size":"100,100"}
+:: buttonchoice {"position":"450,2150","size":"100,100"}
 <<set $passage to "buttonchoice">>
 <<include "header">>
 <main>
@@ -529,7 +556,7 @@ which is codeword:
 <<include "footer">>
 
 
-:: doorA {"position":"625,2025","size":"100,100"}
+:: doorA {"position":"625,2175","size":"100,100"}
 <<include "header">>
 <main>
 Door A
@@ -537,7 +564,7 @@ Door A
 </main>
 
 
-:: doorB {"position":"750,2025","size":"100,100"}
+:: doorB {"position":"750,2175","size":"100,100"}
 <<include "header">>
 <main>
 Door B
@@ -545,7 +572,7 @@ Door B
 </main>
 
 
-:: captions {"position":"450,2150","size":"100,100"}
+:: captions {"position":"450,2300","size":"100,100"}
 <<set $passage to "captions">>
 <<include "header">>
 <main>
@@ -559,7 +586,7 @@ Door B
 <<include "footer">>
 
 
-:: goingbacktochoice {"position":"450,2275","size":"100,100"}
+:: goingbacktochoice {"position":"450,2425","size":"100,100"}
 <<set $passage to "goingbacktochoice">><<include "header">>
 <main>
 Which door did you choose?
@@ -572,7 +599,7 @@ Which door did you choose?
 <<include "footer">>
 
 
-:: answeringlongquestion {"position":"450,2425","size":"100,100"}
+:: answeringlongquestion {"position":"450,2575","size":"100,100"}
 <<set $passage to "answeringlongquestion">><<include "header">>
 <main>
 <<textarea "$answer"" Write your answer here">>
@@ -584,7 +611,7 @@ Which door did you choose?
 <<include "footer">>
 
 
-:: results {"position":"450,2575","size":"100,100"}
+:: results {"position":"450,2725","size":"100,100"}
 <<set $passage to "results">>
 <<include "header">>
 <main>
@@ -596,7 +623,7 @@ $answer
 <<include "footer">>
 
 
-:: map {"position":"450,2700","size":"100,100"}
+:: map {"position":"450,2850","size":"100,100"}
 <<set $passage to "map">>
 <<include "header">><<set $myMap = setup.generateDirectionsMap(51.515145100985166,-0.08905860787295125,51.51341581900639, -0.0850674807043743)>>
 <main>$myMap
@@ -607,7 +634,7 @@ Wish list: get rid of the More options/directions box!
 <<include "footer">>
 
 
-:: addletters {"position":"450,1600","size":"100,100"}
+:: addletters {"position":"450,1750","size":"100,100"}
 <<set $passage to "addletters">>
 <<include "header">>
 <main>
@@ -632,7 +659,7 @@ Wish list: get rid of the More options/directions box!
 <<include "footer">>
 
 
-:: wordminusletters {"position":"575,1600","size":"100,100"}
+:: wordminusletters {"position":"575,1750","size":"100,100"}
 <<set $passage to "wordminusletters">>
 <<include "header">>
 <main>
@@ -646,7 +673,7 @@ Original letters minus 2 random letters: $letters
 <<include "footer">>
 
 
-:: choices {"position":"450,1325","size":"100,100"}
+:: choices {"position":"450,1475","size":"100,100"}
 <<set $passage to "landing">>
 <<include "header">>
 <main>
@@ -675,7 +702,7 @@ Original letters minus 2 random letters: $letters
 </main>
 
 
-:: badchoices {"position":"450,1450","size":"100,100"}
+:: badchoices {"position":"450,1600","size":"100,100"}
 <<set $passage to "badchoices">>
 <<include "header">>
 <main>
@@ -685,7 +712,7 @@ Original letters minus 2 random letters: $letters
 <<include "footer">>
 
 
-:: goodchoices {"position":"575,1450","size":"100,100"}
+:: goodchoices {"position":"575,1600","size":"100,100"}
 <<set $passage to "goodchoices">>
 <<include "header">>
 <main>
@@ -695,7 +722,7 @@ Original letters minus 2 random letters: $letters
 <<include "footer">>
 
 
-:: randomfromlist {"position":"450,1175","size":"100,100"}
+:: randomfromlist {"position":"450,1325","size":"100,100"}
 <<set $passage to "randomfromlist">>
 <<include "header">>
 <main>
@@ -712,7 +739,7 @@ $list
 <<include "footer">>
 
 
-:: wordle {"position":"450,1000","size":"100,100"}
+:: wordle {"position":"450,1150","size":"100,100"}
 <<set $passage to "wordle">>
 <<include "header">>
 <main>
@@ -762,7 +789,7 @@ Make it so this word says "REDO"
 <<include "footer">>
 
 
-:: generatecodes {"position":"450,600","size":"100,100"}
+:: generatecodes {"position":"450,750","size":"100,100"}
 <<set $passage to "generatecodes">><
 <<include "header">>
 <main><<set $code1 to setup.generate5LetterCode()>>
@@ -794,7 +821,7 @@ Code 3: <<textbox "$code3guess" "">>
 <<include "footer">>
 
 
-:: allcorrect {"position":"450,750","size":"100,100"}
+:: allcorrect {"position":"450,900","size":"100,100"}
 <<set $passage to "badchoices">>
 <<include "header">>
 <main>
@@ -804,7 +831,7 @@ All correct
 <<include "footer">>
 
 
-:: allnotcorrect {"position":"575,750","size":"100,100"}
+:: allnotcorrect {"position":"575,900","size":"100,100"}
 <<set $passage to "badchoices">>
 <<include "header">>
 <main>
@@ -814,7 +841,7 @@ All not correct
 <<include "footer">>
 
 
-:: multiplechoicecode {"position":"450,875","size":"100,100"}
+:: multiplechoicecode {"position":"450,1025","size":"100,100"}
 <<set $passage to "badchoices">><<set $nextpass to "multiplechoicecode">>
 <<include "header">>
 <main>
@@ -858,7 +885,7 @@ Pick the correct codes from before (they're followed by a 'C')
 <<include "footer">>
 
 
-:: countdown {"position":"450,2150","size":"100,100"}
+:: countdown {"position":"450,2300","size":"100,100"}
 <<set $passage to "countdown">>
 <<include "header">>
 <main>
@@ -880,7 +907,7 @@ Countdown: <span id="countdown">$seconds seconds remaining</span>!\
 <<include "footer">>
 
 
-:: end {"position":"450,2150","size":"100,100"}
+:: end {"position":"450,2300","size":"100,100"}
 <<set $passage to "19">><<set $endMap = setup.generateDirectionsMap(51.515145100985166,-0.08905860787295125,51.51341581900639, -0.0850674807043743)>><<include "header">>
 <main>
 
@@ -892,7 +919,7 @@ $endMap
 <<include "footer">>
 
 
-:: stampgameeasy {"position":"450,250","size":"100,100"}
+:: stampgameeasy {"position":"450,400","size":"100,100"}
 <<set $passage to "stampgameeasy">>
 <<include "header">>
 <main>
@@ -949,7 +976,7 @@ Click the button if you see the same stamp twice.
 <<include "footer">>
 
 
-:: stampgamehard {"position":"450,400","size":"100,100"}
+:: stampgamehard {"position":"450,550","size":"100,100"}
 <<set $passage to "stampgameeasy">>
 <<include "header">>
 <main>
@@ -1003,6 +1030,31 @@ Click the button if you see the same stamp twice.
 </div>
 
 <<button "next">><<set $prevpass to $passage>><<goto "generatecodes">><</button>>
+</main>
+<<include "footer">>
+
+
+:: ghostdetector {"position":"450,225","size":"100,100"}
+<<set $passage to "badchoices">>
+<<include "header">>
+<main>
+
+  <div class = "detector">
+  <<set $spinning to false>>
+ 
+<<link "<img src = 'https://media3.giphy.com/media/1hpCPjWPnKpKLwAGIX/giphy.gif'>" >>
+	<<if $spinning>>
+    	<<set $spinning to false>>
+        <<audio ":all" stop>>
+		<<removeclass ".detector" "spinning">>
+    <<else>>
+   		<<set $spinning to true>>
+        <<audio "badjoke" play>>
+   	    <<addclass ".detector" "spinning">>
+    <</if>>
+<</link>> 
+</div>
+ 
 </main>
 <<include "footer">>
 
