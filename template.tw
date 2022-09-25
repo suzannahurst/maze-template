@@ -412,6 +412,14 @@ word += alphabet[Math.round((alphabet.length-1)*Math.random())];
   return word;
 }
 
+//Check if an array contains multiple instances of an element
+
+setup.checkForRepeats = (array,element) => {
+ const arrayCopy = [...array];
+ const duplicates = arrayCopy.filter((item, index) => index !== arrayCopy.indexOf(item));
+ return duplicates.contains(element)
+}
+
 
 :: StoryInit {"position":"100,100","size":"100,100"}
 <<cacheaudio "badjoke" "https://youhavefoundconey.net/CG/what/assets/audio/badjoke.mp3">>
@@ -426,7 +434,8 @@ word += alphabet[Math.round((alphabet.length-1)*Math.random())];
 :: footer {"position":"100,350","size":"100,100"}
 <footer><div class="nav-wrapper "><div class="nav-item"><<button "Replay">><<goto $passage>><</button>> </div><div class="nav-item"><<button "Back">><<goto $prevpass>><</button>></div></div><div class="nav-wrapper"><div class="nav-item"><<button "I'm lost">><<goto "lost">><</button>></div></div></footer>
 
-:: lost {"position":"450,125","size":"100,100"}
+
+:: lost {"position":"450,50","size":"100,100"}
 <<set $passage to "lost">><<include "header">>
 <main>
 Sorry to hear that you're lost! 
@@ -438,7 +447,8 @@ You have two options:
 </main>
 <<include "footer">>
 
-:: landing {"position":"450,125","size":"100,100"}
+
+:: landing {"position":"450,50","size":"100,100"}
 <<set $passage to "landing">>
 <<include "header">>
 <main>
@@ -455,14 +465,15 @@ You have two options:
   <<button "choicetally">><<set $prevpass to $passage>><<goto "choices">><</button>>
   <<button "random from list">><<set $prevpass to $passage>><<goto "randomfromlist">><</button>>
   <<button "wordle">><<set $prevpass to $passage>><<goto "wordle">><</button>>
-  <<button "wordle">><<set $prevpass to $passage>><<goto "wordle">><</button>>
   <<button "generate codes">><<set $prevpass to $passage>><<goto "generatecodes">><</button>>
+    <<button "stamp game easy">><<set $prevpass to $passage>><<goto "stampgameeasy">><</button>>
+     <<button "stamp game hard">><<set $prevpass to $passage>><<goto "stampgamehard">><</button>>
 </div>
 </main>
 <<include "footer">>
 
 
-:: codeword {"position":"450,1450","size":"100,100"}
+:: codeword {"position":"450,1725","size":"100,100"}
 <<set $passage to "landing">>
 <<include "header">>
 <main>
@@ -495,7 +506,7 @@ which is codeword:
   <<include "footer">>
 
 
-:: playaudio {"position":"450,1600","size":"100,100"}
+:: playaudio {"position":"450,1875","size":"100,100"}
 <<include "header">>
 <<set $passage to "playaudio">>
 <<audio "badjoke" play>>
@@ -505,7 +516,7 @@ which is codeword:
 <<include "footer">>
 
 
-:: buttonchoice {"position":"450,1725","size":"100,100"}
+:: buttonchoice {"position":"450,2000","size":"100,100"}
 <<set $passage to "buttonchoice">>
 <<include "header">>
 <main>
@@ -518,7 +529,7 @@ which is codeword:
 <<include "footer">>
 
 
-:: doorA {"position":"625,1750","size":"100,100"}
+:: doorA {"position":"625,2025","size":"100,100"}
 <<include "header">>
 <main>
 Door A
@@ -526,7 +537,7 @@ Door A
 </main>
 
 
-:: doorB {"position":"750,1750","size":"100,100"}
+:: doorB {"position":"750,2025","size":"100,100"}
 <<include "header">>
 <main>
 Door B
@@ -534,7 +545,7 @@ Door B
 </main>
 
 
-:: captions {"position":"450,1875","size":"100,100"}
+:: captions {"position":"450,2150","size":"100,100"}
 <<set $passage to "captions">>
 <<include "header">>
 <main>
@@ -548,7 +559,7 @@ Door B
 <<include "footer">>
 
 
-:: goingbacktochoice {"position":"450,2000","size":"100,100"}
+:: goingbacktochoice {"position":"450,2275","size":"100,100"}
 <<set $passage to "goingbacktochoice">><<include "header">>
 <main>
 Which door did you choose?
@@ -561,7 +572,7 @@ Which door did you choose?
 <<include "footer">>
 
 
-:: answeringlongquestion {"position":"450,2150","size":"100,100"}
+:: answeringlongquestion {"position":"450,2425","size":"100,100"}
 <<set $passage to "answeringlongquestion">><<include "header">>
 <main>
 <<textarea "$answer"" Write your answer here">>
@@ -573,7 +584,7 @@ Which door did you choose?
 <<include "footer">>
 
 
-:: results {"position":"450,2300","size":"100,100"}
+:: results {"position":"450,2575","size":"100,100"}
 <<set $passage to "results">>
 <<include "header">>
 <main>
@@ -585,7 +596,7 @@ $answer
 <<include "footer">>
 
 
-:: map {"position":"450,2425","size":"100,100"}
+:: map {"position":"450,2700","size":"100,100"}
 <<set $passage to "map">>
 <<include "header">><<set $myMap = setup.generateDirectionsMap(51.515145100985166,-0.08905860787295125,51.51341581900639, -0.0850674807043743)>>
 <main>$myMap
@@ -596,7 +607,7 @@ Wish list: get rid of the More options/directions box!
 <<include "footer">>
 
 
-:: addletters {"position":"450,1325","size":"100,100"}
+:: addletters {"position":"450,1600","size":"100,100"}
 <<set $passage to "addletters">>
 <<include "header">>
 <main>
@@ -621,7 +632,7 @@ Wish list: get rid of the More options/directions box!
 <<include "footer">>
 
 
-:: wordminusletters {"position":"575,1325","size":"100,100"}
+:: wordminusletters {"position":"575,1600","size":"100,100"}
 <<set $passage to "wordminusletters">>
 <<include "header">>
 <main>
@@ -635,7 +646,7 @@ Original letters minus 2 random letters: $letters
 <<include "footer">>
 
 
-:: choices {"position":"450,1050","size":"100,100"}
+:: choices {"position":"450,1325","size":"100,100"}
 <<set $passage to "landing">>
 <<include "header">>
 <main>
@@ -664,7 +675,7 @@ Original letters minus 2 random letters: $letters
 </main>
 
 
-:: badchoices {"position":"450,1175","size":"100,100"}
+:: badchoices {"position":"450,1450","size":"100,100"}
 <<set $passage to "badchoices">>
 <<include "header">>
 <main>
@@ -674,7 +685,7 @@ Original letters minus 2 random letters: $letters
 <<include "footer">>
 
 
-:: goodchoices {"position":"575,1175","size":"100,100"}
+:: goodchoices {"position":"575,1450","size":"100,100"}
 <<set $passage to "goodchoices">>
 <<include "header">>
 <main>
@@ -684,7 +695,7 @@ Original letters minus 2 random letters: $letters
 <<include "footer">>
 
 
-:: randomfromlist {"position":"450,900","size":"100,100"}
+:: randomfromlist {"position":"450,1175","size":"100,100"}
 <<set $passage to "randomfromlist">>
 <<include "header">>
 <main>
@@ -701,7 +712,7 @@ $list
 <<include "footer">>
 
 
-:: wordle {"position":"450,725","size":"100,100"}
+:: wordle {"position":"450,1000","size":"100,100"}
 <<set $passage to "wordle">>
 <<include "header">>
 <main>
@@ -751,7 +762,7 @@ Make it so this word says "REDO"
 <<include "footer">>
 
 
-:: generatecodes {"position":"450,325","size":"100,100"}
+:: generatecodes {"position":"450,600","size":"100,100"}
 <<set $passage to "generatecodes">><
 <<include "header">>
 <main><<set $code1 to setup.generate5LetterCode()>>
@@ -783,7 +794,7 @@ Code 3: <<textbox "$code3guess" "">>
 <<include "footer">>
 
 
-:: allcorrect {"position":"450,475","size":"100,100"}
+:: allcorrect {"position":"450,750","size":"100,100"}
 <<set $passage to "badchoices">>
 <<include "header">>
 <main>
@@ -793,7 +804,7 @@ All correct
 <<include "footer">>
 
 
-:: allnotcorrect {"position":"575,475","size":"100,100"}
+:: allnotcorrect {"position":"575,750","size":"100,100"}
 <<set $passage to "badchoices">>
 <<include "header">>
 <main>
@@ -803,7 +814,7 @@ All not correct
 <<include "footer">>
 
 
-:: multiplechoicecode {"position":"450,600","size":"100,100"}
+:: multiplechoicecode {"position":"450,875","size":"100,100"}
 <<set $passage to "badchoices">><<set $nextpass to "multiplechoicecode">>
 <<include "header">>
 <main>
@@ -846,7 +857,8 @@ Pick the correct codes from before (they're followed by a 'C')
 </main>
 <<include "footer">>
 
-:: countdown {"position":"450,1875","size":"100,100"}
+
+:: countdown {"position":"450,2150","size":"100,100"}
 <<set $passage to "countdown">>
 <<include "header">>
 <main>
@@ -868,8 +880,7 @@ Countdown: <span id="countdown">$seconds seconds remaining</span>!\
 <<include "footer">>
 
 
-
-:: end {"position":"450,1875","size":"100,100"}
+:: end {"position":"450,2150","size":"100,100"}
 <<set $passage to "19">><<set $endMap = setup.generateDirectionsMap(51.515145100985166,-0.08905860787295125,51.51341581900639, -0.0850674807043743)>><<include "header">>
 <main>
 
@@ -879,3 +890,120 @@ $endMap
   
 </main>
 <<include "footer">>
+
+
+:: stampgameeasy {"position":"450,250","size":"100,100"}
+<<set $passage to "stampgameeasy">>
+<<include "header">>
+<main>
+
+<<set $stamps = [1,2,3,4,5,6,7,1]>>
+<<set $stampcount to 0>>
+
+STAMP GAME - EASY
+Click the button if you see the same stamp twice.
+
+<div class="stamp-container">$stamps[$stampcount]</div>
+
+<<button "There's more than one of that stamp!">>
+	<<if setup.checkForRepeats($stamps, $stamps[$stampcount])>>
+    	<<replace ".stamp-feedback">>That's right! There's more than one of that stamp<</replace>>
+    <<else>>
+    	<<replace ".stamp-feedback">>Not quite, there's only one of that stamp.<</replace>>
+    <</if>>
+<</button>>
+
+<<silently>>
+	<<repeat 3s>>
+    	<<replace ".stamp-feedback">><</replace>>
+		<<set $stampcount to $stampcount + 1>>
+		<<if $stampcount lt $stamps.length>>
+			<<replace ".stamp-container">>$stamps[$stampcount]<</replace>>
+		<<else>>
+			<<replace ".stamp-container">>Out of stamps<</replace>>
+			<<stop>>
+		<</if>>
+	<</repeat>>
+<</silently>>
+
+<<button "Next stamp">>
+	<<replace ".stamp-feedback">><</replace>>
+	<<if $stampcount lt $stamps.length-1>>
+      <<set $stampcount to $stampcount + 1>>
+      <<replace ".stamp-container">>$stamps[$stampcount]<</replace>>
+    <</if>>
+<</button>>
+<<button "Previous stamp">>
+	<<replace ".stamp-feedback">><</replace>>
+	<<if $stampcount gt 0>>
+      <<set $stampcount to $stampcount - 1>>
+      <<replace ".stamp-container">>$stamps[$stampcount]<</replace>>
+    <</if>>
+<</button>>
+
+<div class = "stamp-feedback">
+</div>
+
+<<button "next">><<set $prevpass to $passage>><<goto "stampgamehard">><</button>>
+</main>
+<<include "footer">>
+
+
+:: stampgamehard {"position":"450,400","size":"100,100"}
+<<set $passage to "stampgameeasy">>
+<<include "header">>
+<main>
+
+<<set $hardstampquestions = ['2x4','5+4','10-6','8+0']>>
+<<set $hardstampanswers = [8,9,4,8]>>
+<<set $hardstampcount to 0>>
+
+STAMP GAME - HARD
+Click the button if you see the same stamp twice.
+
+<div class="stamp-container">$hardstampquestions[$hardstampcount]</div>
+
+<<button "There's more than one of that stamp!">>
+	<<if setup.checkForRepeats($hardstampanswers, $hardstampanswers[$hardstampcount])>>
+    	<<replace ".stamp-feedback">>That's right! There's more than one of that stamp<</replace>>
+    <<else>>
+    	<<replace ".stamp-feedback">>Not quite, there's only one of that stamp.<</replace>>
+    <</if>>
+<</button>>
+
+<<silently>>
+	<<repeat 3s>>
+    	<<replace ".stamp-feedback">><</replace>>
+		<<set $hardstampcount to $hardstampcount + 1>>
+		<<if $hardstampcount lt $hardstampanswers.length>>
+			<<replace ".stamp-container">>$hardstampquestions[$hardstampcount]<</replace>>
+		<<else>>
+			<<replace ".stamp-container">>Out of stamps<</replace>>
+			<<stop>>
+		<</if>>
+	<</repeat>>
+<</silently>>
+
+<<button "Next stamp">>
+	<<replace ".stamp-feedback">><</replace>>
+	<<if $hardstampcount lt $hardstampquestions.length-1>>
+      <<set $hardstampcount to $hardstampcount + 1>>
+      <<replace ".stamp-container">>$hardstampquestions[$hardstampcount]<</replace>>
+    <</if>>
+<</button>>
+<<button "Previous stamp">>
+	<<replace ".stamp-feedback">><</replace>>
+	<<if $hardstampcount gt 0>>
+      <<set $hardstampcount to $hardstampcount - 1>>
+      <<replace ".stamp-container">>$hardstampquestions[$hardstampcount]<</replace>>
+    <</if>>
+<</button>>
+
+<div class = "stamp-feedback">
+</div>
+
+<<button "next">><<set $prevpass to $passage>><<goto "generatecodes">><</button>>
+</main>
+<<include "footer">>
+
+
