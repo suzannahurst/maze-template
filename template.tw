@@ -227,6 +227,18 @@ nav{
   margin-inline-end: 1.5rem
 }
 
+.menu-wrapper{
+  display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.menu-wrapper > button{
+margin-inline-end: 10px;
+margin-block-end: 10px
+}
+
 .door-container{
   display:flex;
   flex-direction: row;
@@ -395,7 +407,8 @@ word += alphabet[Math.round((alphabet.length-1)*Math.random())];
 
 :: footer {"position":"100,350","size":"100,100"}
 <footer><nav><div class="nav-item"><<button REPLAY>><<goto $passage>><</button>> </div>
-<div class="nav-item"><<button "BACK">><<goto $prevpass>><</button>></div></nav></footer>
+<div class="nav-item"><<button "BACK">><<goto $prevpass>><</button>></div>
+<div class="nav-item"><<button "MENU">><<goto "landing">><</button>></div></nav></footer>
 
 
 :: landing {"position":"450,125","size":"100,100"}
@@ -404,18 +417,20 @@ word += alphabet[Math.round((alphabet.length-1)*Math.random())];
 <main>
   menu
 
-<<button "enter codeword">><<set $prevpass to $passage>><<goto "codeword">><</button>>
-<<button "playaudio">><<set $prevpass to $passage>><<goto "playaudio">><</button>>
-<<button "buttonchoice">><<set $prevpass to $passage>><<goto "buttonchoice">><</button>>
-<<button "captions">><<set $prevpass to $passage>><<goto "captions">><</button>>
-<<button "answeringlongquestion">><<set $prevpass to $passage>><<goto "answeringlongquestion">><</button>>
-<<button "map">><<set $prevpass to $passage>><<goto "map">><</button>>
-<<button "addletters">><<set $prevpass to $passage>><<goto "addletters">><</button>>
-<<button "choicetally">><<set $prevpass to $passage>><<goto "choices">><</button>>
-<<button "random from list">><<set $prevpass to $passage>><<goto "randomfromlist">><</button>>
-<<button "wordle">><<set $prevpass to $passage>><<goto "wordle">><</button>>
-<<button "wordle">><<set $prevpass to $passage>><<goto "wordle">><</button>>
-<<button "generate codes">><<set $prevpass to $passage>><<goto "generatecodes">><</button>>
+<div class="menu-wrapper">
+  <<button "enter codeword">><<set $prevpass to $passage>><<goto "codeword">><</button>>
+  <<button "playaudio">><<set $prevpass to $passage>><<goto "playaudio">><</button>>
+  <<button "buttonchoice">><<set $prevpass to $passage>><<goto "buttonchoice">><</button>>
+  <<button "captions">><<set $prevpass to $passage>><<goto "captions">><</button>>
+  <<button "answeringlongquestion">><<set $prevpass to $passage>><<goto "answeringlongquestion">><</button>>
+  <<button "map">><<set $prevpass to $passage>><<goto "map">><</button>>
+  <<button "addletters">><<set $prevpass to $passage>><<goto "addletters">><</button>>
+  <<button "choicetally">><<set $prevpass to $passage>><<goto "choices">><</button>>
+  <<button "random from list">><<set $prevpass to $passage>><<goto "randomfromlist">><</button>>
+  <<button "wordle">><<set $prevpass to $passage>><<goto "wordle">><</button>>
+  <<button "wordle">><<set $prevpass to $passage>><<goto "wordle">><</button>>
+  <<button "generate codes">><<set $prevpass to $passage>><<goto "generatecodes">><</button>>
+</div>
 </main>
 <<include "footer">>
 
@@ -712,14 +727,9 @@ Make it so this word says "REDO"
 :: generatecodes {"position":"450,325","size":"100,100"}
 <<set $passage to "generatecodes">><<set $nextpass to "generatecodes">>
 <<include "header">>
-<main>
-
-<<set $code1 to setup.generate5LetterCode()>>
+<main><<set $code1 to setup.generate5LetterCode()>>
 <<set $code2 to setup.generate5LetterCode()>>
-<<set $code3 to setup.generate5LetterCode()>>
-
-<<set $sixletterwordlist to ["BABBLE","ABASED","ABACUS","KEBABS","LABELS","MACAWS","NABBED","RABBIT","UGLIER","YACHTS"]>>
-<<set $randomsixletterword to $sixletterwordlist.random()>>
+<<set $code3 to setup.generate5LetterCode()>><<set $sixletterwordlist to ["BABBLE","ABASED","ABACUS","KEBABS","LABELS","MACAWS","NABBED","RABBIT","UGLIER","YACHTS"]>><<set $randomsixletterword to $sixletterwordlist.random()>>
 Here is a random six letter word:
 $randomsixletterword
 

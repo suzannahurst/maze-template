@@ -312,6 +312,18 @@ nav{
   margin-inline-end: 1.5rem
 }
 
+.menu-wrapper{
+  display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.menu-wrapper > button{
+margin-inline-end: 10px;
+margin-block-end: 10px
+}
+
 .door-container{
   display:flex;
   flex-direction: row;
@@ -464,23 +476,26 @@ word += alphabet[Math.round((alphabet.length-1)*Math.random())];
 }</script><tw-passagedata pid="1" name="StoryInit" tags="" position="100,100" size="100,100">&lt;&lt;cacheaudio &quot;badjoke&quot; &quot;https://youhavefoundconey.net/CG/what/assets/audio/badjoke.mp3&quot;&gt;&gt;
 &lt;&lt;waitforaudio&gt;&gt;</tw-passagedata><tw-passagedata pid="2" name="header" tags="" position="100,225" size="100,100">&lt;header&gt;Adventure Functionality /
  Structure Template&lt;/header&gt;</tw-passagedata><tw-passagedata pid="3" name="footer" tags="" position="100,350" size="100,100">&lt;footer&gt;&lt;nav&gt;&lt;div class=&quot;nav-item&quot;&gt;&lt;&lt;button REPLAY&gt;&gt;&lt;&lt;goto $passage&gt;&gt;&lt;&lt;/button&gt;&gt; &lt;/div&gt;
-&lt;div class=&quot;nav-item&quot;&gt;&lt;&lt;button &quot;BACK&quot;&gt;&gt;&lt;&lt;goto $prevpass&gt;&gt;&lt;&lt;/button&gt;&gt;&lt;/div&gt;&lt;/nav&gt;&lt;/footer&gt;</tw-passagedata><tw-passagedata pid="4" name="landing" tags="" position="450,125" size="100,100">&lt;&lt;set $passage to &quot;landing&quot;&gt;&gt;&lt;&lt;set $nextpass to &quot;wordle&quot;&gt;&gt;
+&lt;div class=&quot;nav-item&quot;&gt;&lt;&lt;button &quot;BACK&quot;&gt;&gt;&lt;&lt;goto $prevpass&gt;&gt;&lt;&lt;/button&gt;&gt;&lt;/div&gt;
+&lt;div class=&quot;nav-item&quot;&gt;&lt;&lt;button &quot;MENU&quot;&gt;&gt;&lt;&lt;goto &quot;landing&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;&lt;/div&gt;&lt;/nav&gt;&lt;/footer&gt;</tw-passagedata><tw-passagedata pid="4" name="landing" tags="" position="450,125" size="100,100">&lt;&lt;set $passage to &quot;landing&quot;&gt;&gt;&lt;&lt;set $nextpass to &quot;wordle&quot;&gt;&gt;
 &lt;&lt;include &quot;header&quot;&gt;&gt;
 &lt;main&gt;
   menu
 
-&lt;&lt;button &quot;enter codeword&quot;&gt;&gt;&lt;&lt;set $prevpass to $passage&gt;&gt;&lt;&lt;goto &quot;codeword&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;
-&lt;&lt;button &quot;playaudio&quot;&gt;&gt;&lt;&lt;set $prevpass to $passage&gt;&gt;&lt;&lt;goto &quot;playaudio&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;
-&lt;&lt;button &quot;buttonchoice&quot;&gt;&gt;&lt;&lt;set $prevpass to $passage&gt;&gt;&lt;&lt;goto &quot;buttonchoice&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;
-&lt;&lt;button &quot;captions&quot;&gt;&gt;&lt;&lt;set $prevpass to $passage&gt;&gt;&lt;&lt;goto &quot;captions&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;
-&lt;&lt;button &quot;answeringlongquestion&quot;&gt;&gt;&lt;&lt;set $prevpass to $passage&gt;&gt;&lt;&lt;goto &quot;answeringlongquestion&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;
-&lt;&lt;button &quot;map&quot;&gt;&gt;&lt;&lt;set $prevpass to $passage&gt;&gt;&lt;&lt;goto &quot;map&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;
-&lt;&lt;button &quot;addletters&quot;&gt;&gt;&lt;&lt;set $prevpass to $passage&gt;&gt;&lt;&lt;goto &quot;addletters&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;
-&lt;&lt;button &quot;choicetally&quot;&gt;&gt;&lt;&lt;set $prevpass to $passage&gt;&gt;&lt;&lt;goto &quot;choices&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;
-&lt;&lt;button &quot;random from list&quot;&gt;&gt;&lt;&lt;set $prevpass to $passage&gt;&gt;&lt;&lt;goto &quot;randomfromlist&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;
-&lt;&lt;button &quot;wordle&quot;&gt;&gt;&lt;&lt;set $prevpass to $passage&gt;&gt;&lt;&lt;goto &quot;wordle&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;
-&lt;&lt;button &quot;wordle&quot;&gt;&gt;&lt;&lt;set $prevpass to $passage&gt;&gt;&lt;&lt;goto &quot;wordle&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;
-&lt;&lt;button &quot;generate codes&quot;&gt;&gt;&lt;&lt;set $prevpass to $passage&gt;&gt;&lt;&lt;goto &quot;generatecodes&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;
+&lt;div class=&quot;menu-wrapper&quot;&gt;
+  &lt;&lt;button &quot;enter codeword&quot;&gt;&gt;&lt;&lt;set $prevpass to $passage&gt;&gt;&lt;&lt;goto &quot;codeword&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;
+  &lt;&lt;button &quot;playaudio&quot;&gt;&gt;&lt;&lt;set $prevpass to $passage&gt;&gt;&lt;&lt;goto &quot;playaudio&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;
+  &lt;&lt;button &quot;buttonchoice&quot;&gt;&gt;&lt;&lt;set $prevpass to $passage&gt;&gt;&lt;&lt;goto &quot;buttonchoice&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;
+  &lt;&lt;button &quot;captions&quot;&gt;&gt;&lt;&lt;set $prevpass to $passage&gt;&gt;&lt;&lt;goto &quot;captions&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;
+  &lt;&lt;button &quot;answeringlongquestion&quot;&gt;&gt;&lt;&lt;set $prevpass to $passage&gt;&gt;&lt;&lt;goto &quot;answeringlongquestion&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;
+  &lt;&lt;button &quot;map&quot;&gt;&gt;&lt;&lt;set $prevpass to $passage&gt;&gt;&lt;&lt;goto &quot;map&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;
+  &lt;&lt;button &quot;addletters&quot;&gt;&gt;&lt;&lt;set $prevpass to $passage&gt;&gt;&lt;&lt;goto &quot;addletters&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;
+  &lt;&lt;button &quot;choicetally&quot;&gt;&gt;&lt;&lt;set $prevpass to $passage&gt;&gt;&lt;&lt;goto &quot;choices&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;
+  &lt;&lt;button &quot;random from list&quot;&gt;&gt;&lt;&lt;set $prevpass to $passage&gt;&gt;&lt;&lt;goto &quot;randomfromlist&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;
+  &lt;&lt;button &quot;wordle&quot;&gt;&gt;&lt;&lt;set $prevpass to $passage&gt;&gt;&lt;&lt;goto &quot;wordle&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;
+  &lt;&lt;button &quot;wordle&quot;&gt;&gt;&lt;&lt;set $prevpass to $passage&gt;&gt;&lt;&lt;goto &quot;wordle&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;
+  &lt;&lt;button &quot;generate codes&quot;&gt;&gt;&lt;&lt;set $prevpass to $passage&gt;&gt;&lt;&lt;goto &quot;generatecodes&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;
+&lt;/div&gt;
 &lt;/main&gt;
 &lt;&lt;include &quot;footer&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="5" name="codeword" tags="" position="450,1450" size="100,100">&lt;&lt;set $passage to &quot;landing&quot;&gt;&gt;&lt;&lt;set $nextpass to &quot;playaudio&quot;&gt;&gt;
 &lt;&lt;include &quot;header&quot;&gt;&gt;
@@ -705,14 +720,9 @@ Make it so this word says &quot;REDO&quot;
 &lt;/main&gt;
 &lt;&lt;include &quot;footer&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="22" name="generatecodes" tags="" position="450,325" size="100,100">&lt;&lt;set $passage to &quot;generatecodes&quot;&gt;&gt;&lt;&lt;set $nextpass to &quot;generatecodes&quot;&gt;&gt;
 &lt;&lt;include &quot;header&quot;&gt;&gt;
-&lt;main&gt;
-
-&lt;&lt;set $code1 to setup.generate5LetterCode()&gt;&gt;
+&lt;main&gt;&lt;&lt;set $code1 to setup.generate5LetterCode()&gt;&gt;
 &lt;&lt;set $code2 to setup.generate5LetterCode()&gt;&gt;
-&lt;&lt;set $code3 to setup.generate5LetterCode()&gt;&gt;
-
-&lt;&lt;set $sixletterwordlist to [&quot;BABBLE&quot;,&quot;ABASED&quot;,&quot;ABACUS&quot;,&quot;KEBABS&quot;,&quot;LABELS&quot;,&quot;MACAWS&quot;,&quot;NABBED&quot;,&quot;RABBIT&quot;,&quot;UGLIER&quot;,&quot;YACHTS&quot;]&gt;&gt;
-&lt;&lt;set $randomsixletterword to $sixletterwordlist.random()&gt;&gt;
+&lt;&lt;set $code3 to setup.generate5LetterCode()&gt;&gt;&lt;&lt;set $sixletterwordlist to [&quot;BABBLE&quot;,&quot;ABASED&quot;,&quot;ABACUS&quot;,&quot;KEBABS&quot;,&quot;LABELS&quot;,&quot;MACAWS&quot;,&quot;NABBED&quot;,&quot;RABBIT&quot;,&quot;UGLIER&quot;,&quot;YACHTS&quot;]&gt;&gt;&lt;&lt;set $randomsixletterword to $sixletterwordlist.random()&gt;&gt;
 Here is a random six letter word:
 $randomsixletterword
 
