@@ -907,8 +907,8 @@ Countdown: <span id="countdown">$seconds seconds remaining</span>!\
 <<include "footer">>
 
 
-:: end {"position":"450,2300","size":"100,100"}
-<<set $passage to "19">><<set $endMap = setup.generateDirectionsMap(51.515145100985166,-0.08905860787295125,51.51341581900639, -0.0850674807043743)>><<include "header">>
+:: end {"position":"450,1875","size":"100,100"}
+<<set $passage to "19">><<set $endMap = setup.generateDirectionsMap({lat:51.515145100985166,long:-0.08905860787295125},{lat:51.51341581900639, long:-0.0850674807043743})>><<include "header">>
 <main>
 
 End location
